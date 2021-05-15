@@ -5,7 +5,7 @@ import { useState } from "react";
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
-import Panel from "../components/Panel";
+import MemosTheme from "../components/MemosTheme";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -40,7 +40,7 @@ export default function Home() {
         onClick={onClickAdd}
 
       />
-      <Panel
+      <MemosTheme
         themes={themes}
         onClickDelete={onclickDelete}
         // disabled={e.onClickComplete}

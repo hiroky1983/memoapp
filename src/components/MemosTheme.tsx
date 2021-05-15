@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import "tailwindcss/tailwind.css";
 
-export default function Panel(props) {
+export default function MemosTheme(props) {
   const { themes, onClickDelete } = props;
 //   const theme = [...Array.keys()].map((val) => {
 // return{
