@@ -4,10 +4,15 @@ import "tailwindcss/tailwind.css";
 
 export default function Panel(props) {
   const { themes, onClickDelete } = props;
+//   const theme = [...Array.keys()].map((val) => {
+// return{
+//   theme: {theme},
+// }
+//   })
   return (
     <div>
       <ul>
-        {themes.map((theme, index) => {
+        {themes.map((theme: string, index: number) => {
           return (
             <div key={theme}>
               <li>

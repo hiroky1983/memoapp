@@ -11,6 +11,7 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
 
+ 
   const onChangeInputText = (event) => setInputText(event.target.value);
 
   const onClickAdd = () => {
@@ -19,6 +20,7 @@ export default function Home() {
     setThemes(newThemes);
     setInputText("");
   };
+
 
   const onclickDelete = (index) => {
     const newThemes = [...themes];
@@ -36,7 +38,7 @@ export default function Home() {
         inputText={inputText}
         onChange={onChangeInputText}
         onClick={onClickAdd}
-        // onKeyPress={(e) => this.handleKeyPress(e)} 
+
       />
       <Panel
         themes={themes}
