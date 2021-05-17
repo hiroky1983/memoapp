@@ -1,7 +1,9 @@
+import { KeyObject } from "crypto";
 import "tailwindcss/tailwind.css";
 
 export default function InputForms(props) {
-  const { inputText, onChange, onClick } = props;
+  const { inputText, onChange, onClick,pushEnter } = props;
+
 
   return (
     <div className="p-6 m-1">
@@ -13,6 +15,7 @@ export default function InputForms(props) {
           placeholder="題名を入力"
           value={inputText}
           onChange={onChange}
+          onKeyDown={pushEnter}
         />
         <div className="p-4">
           <button

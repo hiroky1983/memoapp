@@ -1,7 +1,6 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-// import styles from "../styles/Home.module.css";
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
@@ -11,7 +10,6 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
 
- 
   const onChangeInputText = (event) => setInputText(event.target.value);
 
   const onClickAdd = () => {
@@ -21,6 +19,13 @@ export default function Home() {
     setInputText("");
   };
 
+  const keyDown = (e) => {
+    if (e.which === 13) {
+      const newThemes = [...themes, inputText];
+      setThemes(newThemes);
+      setInputText("");
+    }
+  };
 
   const onclickDelete = (index) => {
     const newThemes = [...themes];
@@ -38,7 +43,7 @@ export default function Home() {
         inputText={inputText}
         onChange={onChangeInputText}
         onClick={onClickAdd}
-
+        pushEnter={(e) => keyDown(e)}
       />
       <MemosTheme
         themes={themes}
