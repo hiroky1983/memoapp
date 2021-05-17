@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 import "tailwindcss/tailwind.css";
+import DeleteButton from "./button/DeleteButton";
 
 export default function MemosTheme(props) {
   const { themes, onClickDelete } = props;
-  
+
   return (
     <div>
       <ul>
@@ -21,12 +22,7 @@ export default function MemosTheme(props) {
                     </div>
                   </div>
                   <div>
-                    <button
-                      className="bg-blue-500 hover:opacity-75 text-white rounded-full px-8 py-2 focus:outline-none"
-                      onClick={() => onClickDelete(index)}
-                    >
-                      削除
-                    </button>
+                    <DeleteButton onClick={() => onClickDelete(index)} />
                   </div>
                 </div>
               </li>

@@ -20,7 +20,7 @@ export default function Home() {
   };
 
   const keyDown = (e) => {
-    if (e.which === 13) {
+    if (e.keyCode === 13) {
       const newThemes = [...themes, inputText];
       setThemes(newThemes);
       setInputText("");
@@ -48,7 +48,6 @@ export default function Home() {
       <MemosTheme
         themes={themes}
         onClickDelete={onclickDelete}
-        // disabled={e.onClickComplete}
       />
     </div>
   );
