@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
