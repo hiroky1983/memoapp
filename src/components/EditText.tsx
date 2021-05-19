@@ -6,8 +6,8 @@ export default function EditText() {
   const [content, setContent] = useState("");
 
   const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    (event) => {
-      setContent(event.currentTarget.value);
+    (e) => {
+      setContent(e.currentTarget.value);
     };
 
   return (
