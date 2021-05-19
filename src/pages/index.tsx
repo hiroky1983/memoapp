@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
@@ -10,11 +10,16 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
 
-  const onChangeInputText = (event) => setInputText(event.target.value);
+  const onChangeInputText = (e) => setInputText(e.target.value);
 
   const onClickAdd = () => {
+    
     if (inputText === "") return;
     const newThemes = [...themes, inputText];
+    if(themes.some((item) => item === inputText)){
+      alert("同じ題名があります");
+      return inputText
+    }
     setThemes(newThemes);
     setInputText("");
   };
@@ -22,12 +27,16 @@ export default function Home() {
   const keyDown = (e) => {
     if (e.keyCode === 13) {
       const newThemes = [...themes, inputText];
+      if(themes.some((item) => item === inputText)){
+        alert("同じ題名があります");
+        return inputText
+      }
       setThemes(newThemes);
       setInputText("");
     }
   };
 
-  const onclickDelete = (index) => {
+  const onClickDelete = (index) => {
     const newThemes = [...themes];
     newThemes.splice(index, 1);
     setThemes(newThemes);
@@ -47,7 +56,7 @@ export default function Home() {
       />
       <MemosTheme
         themes={themes}
-        onClickDelete={onclickDelete}
+        onClickDelete={onClickDelete}
       />
     </div>
   );
