@@ -1,10 +1,13 @@
 import Head from "next/head";
 import { useCallback, useState } from "react";
+import * as firebase from 'firebase'
 
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
+
+
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -13,16 +16,15 @@ export default function Home() {
   const onChangeInputText = (e) => setInputText(e.target.value);
 
   const onClickAdd = () => {
-    
     if (inputText === "") return;
     const newThemes = [...themes, inputText];
-    if(themes.some((item) => item === inputText)){
+    if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
-      return inputText
+      return inputText;
     }
-    if(inputText.length === 0){
-      alert("題名を入力して下さい")
-      return inputText
+    if (inputText.length === 0) {
+      alert("題名を入力して下さい");
+      return inputText;
     }
     setThemes(newThemes);
     setInputText("");
@@ -31,13 +33,13 @@ export default function Home() {
   const keyDown = (e) => {
     if (e.keyCode === 13) {
       const newThemes = [...themes, inputText];
-      if(themes.some((item) => item === inputText)){
+      if (themes.some((item) => item === inputText)) {
         alert("同じ題名があります");
-        return inputText
+        return inputText;
       }
-      if(inputText.length === 0){
-        alert("題名を入力して下さい")
-        return inputText
+      if (inputText.length === 0) {
+        alert("題名を入力して下さい");
+        return inputText;
       }
       setThemes(newThemes);
       setInputText("");
@@ -62,10 +64,7 @@ export default function Home() {
         onClick={onClickAdd}
         pushEnter={(e) => keyDown(e)}
       />
-      <MemosTheme
-        themes={themes}
-        onClickDelete={onClickDelete}
-      />
+      <MemosTheme themes={themes} onClickDelete={onClickDelete} />
     </div>
   );
 }
