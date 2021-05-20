@@ -7,7 +7,7 @@ export default function MemosTheme(props) {
   const { themes, onClickDelete } = props;
 
   return (
-    <div>
+    <div className="max-w-screen-xl">
       <ul>
         {themes.map((theme: string, index: number) => {
           return (
