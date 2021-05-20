@@ -20,6 +20,10 @@ export default function Home() {
       alert("同じ題名があります");
       return inputText
     }
+    if(inputText.length === 0){
+      alert("題名を入力して下さい")
+      return inputText
+    }
     setThemes(newThemes);
     setInputText("");
   };
@@ -29,6 +33,10 @@ export default function Home() {
       const newThemes = [...themes, inputText];
       if(themes.some((item) => item === inputText)){
         alert("同じ題名があります");
+        return inputText
+      }
+      if(inputText.length === 0){
+        alert("題名を入力して下さい")
         return inputText
       }
       setThemes(newThemes);
