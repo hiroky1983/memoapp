@@ -1,12 +1,15 @@
 import Head from "next/head";
 import { useCallback, useState } from "react";
-import * as firebase from 'firebase'
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
+import "firebase/firestore";
 
 import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
-
+import { Firestore } from "@google-cloud/firestore";
 
 
 export default function Home() {
