@@ -15,22 +15,16 @@ import { firebaseConfig } from "../firebase/Config";
 
 firebaseConfig;
 
-export default function Home() {
+const useTheme = () => {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
-
   const db = firebase.firestore();
-  const auth = firebase.auth();
-  const storage = firebase.storage();
-  const functions = firebase.functions();
-  const FirebaseTimestamp = firebase.firestore.Timestamp;
 
   const onChangeInputText = (e) => setInputText(e.target.value);
 
   const onClickAdd = async () => {
     if (inputText === "") return;
     const newThemes = [...themes, inputText];
-    
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
       return inputText;
@@ -65,11 +59,38 @@ export default function Home() {
     }
   };
 
-  const onClickDelete = (index) => {
+  const onClickDelete = async (index) => {
     const newThemes = [...themes];
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
+
+  return {
+    inputText,
+    setInputText,
+    themes,
+    setThemes,
+    onChangeInputText,
+    onClickAdd,
+    keyDown,
+    onClickDelete,
+  };
+};
+
+export default function Home() {
+  const {
+    inputText,
+    themes,
+    onChangeInputText,
+    onClickAdd,
+    keyDown,
+    onClickDelete,
+  } = useTheme();
+
+  const auth = firebase.auth();
+  const storage = firebase.storage();
+  const functions = firebase.functions();
+  const FirebaseTimestamp = firebase.firestore.Timestamp;
 
   return (
     <div>
