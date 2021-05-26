@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@reduxjs/toolkit": "^1.5.1",
     "@types/react-router-dom": "^5.1.7",
     "firebase": "^8.6.1",
     "install": "^0.13.0",
