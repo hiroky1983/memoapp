@@ -41,6 +41,7 @@ export default function Home(props) {
         onClick={onClickAdd}
         pushEnter={(e) => keyDown(e)}
       />
+      
       <MemosTheme themes={themes} onClickDelete={onClickDelete} />
     </div>
   );

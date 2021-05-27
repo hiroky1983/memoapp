@@ -12,6 +12,7 @@ export default function EditText() {
 
   return (
     <div className="m-3">
+      
       <label htmlFor="memo" className="flex-1 pb-20 cursor-text m-8">
         <TextareaAutosize
           id="memo"
