@@ -1,15 +1,21 @@
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
+import  SaveButton from "./button/SaveButton";
 
-export default function Header() {
+interface MyComponentProps{
+  isButtonShow: Boolean;
+}
+
+export default function Header({isButtonShow}:MyComponentProps) {
   return (
-    <div className="items-center ">
+    <div className="items-center flex ">
       <Link href="/">
         <img
           src="https://it-kingdom.com/_next/image?url=%2Fimg%2Flogo.png&w=220&q=75"
           className="p-5 cursor-pointer flex"
         />
       </Link>
+      {isButtonShow && <SaveButton />}
 
       <div className="border"></div>
     </div>

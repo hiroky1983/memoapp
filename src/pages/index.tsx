@@ -34,7 +34,7 @@ export default function Home(props) {
       <Head>
         <title>MemoApp</title>
       </Head>
-      <Header />
+      <Header isButtonShow={false}/>
       <InputForms
         inputText={inputText}
         onChange={onChangeInputText}
