@@ -6,7 +6,8 @@ interface MyComponentProps{
   isButtonShow: Boolean;
 }
 
-export default function Header({isButtonShow}:MyComponentProps) {
+export default function Header({isButtonShow}:MyComponentProps , props) {
+  const title = props;
   return (
     <div className="items-center flex ">
       <Link href="/">
@@ -15,7 +16,7 @@ export default function Header({isButtonShow}:MyComponentProps) {
           className="p-5 cursor-pointer flex"
         />
       </Link>
-      {isButtonShow && <SaveButton />}
+      {isButtonShow && <SaveButton title={title}/>}
 
       <div className="border"></div>
     </div>

@@ -4,7 +4,7 @@ import { TextareaHTMLAttributes, useState } from "react";
 
 export default function EditText() {
   const [content, setContent] = useState("");
-
+  
   const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
     (e) => {
       setContent(e.currentTarget.value);
@@ -12,7 +12,7 @@ export default function EditText() {
 
   return (
     <div className="m-3">
-      
+
       <label htmlFor="memo" className="flex-1 pb-20 cursor-text m-8">
         <TextareaAutosize
           id="memo"

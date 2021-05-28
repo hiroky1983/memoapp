@@ -3,7 +3,7 @@ import CreateButton from "./button/CreateButton";
 import SearchButton from "./button/SearchButton";
 
 export default function InputForms(props) {
-  const { inputText, onChange, onClick, pushEnter } = props;
+  const { inputText, onChange, onClick, pushEnter,title } = props;
 
   return (
     <div className="p-6 m-1 max-w-screen-xl	">
@@ -18,8 +18,8 @@ export default function InputForms(props) {
           onKeyDown={pushEnter}
         />
         <div className="p-4 flex ">
-          <CreateButton onClick={onClick} />
-          <SearchButton />
+          <CreateButton onClick={onClick} title={title} />
+          <SearchButton title={title} />
         </div>
       </div>
     </div>

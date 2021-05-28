@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { title } from "process";
 
 import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 
 export default function MemosTheme(props) {
   const { themes, onClickDelete } = props;
-  
 
   return (
     <div className="max-w-screen-xl">
@@ -23,7 +23,7 @@ export default function MemosTheme(props) {
                     </div>
                   </div>
                   <div>
-                    <DeleteButton onClick={() => onClickDelete(index)} />
+                    <DeleteButton onClick={() => onClickDelete(index)} title={title} />
                   </div>
                 </div>
               </li>

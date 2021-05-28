@@ -9,7 +9,7 @@ export default function SaveButton(props) {
       <button
         className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
         onClick={onClick}
-        title="削除">
+        title="保存">
           <AiFillSave />
       </button>
     </div>
