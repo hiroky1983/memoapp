@@ -9,7 +9,8 @@ interface MyComponentProps{
 export default function Header({isButtonShow}:MyComponentProps , props) {
   const title = props;
   return (
-    <div className="items-center flex ">
+    <div className="items-center">
+      <div className="flex items-center">
       <Link href="/">
         <img
           src="https://it-kingdom.com/_next/image?url=%2Fimg%2Flogo.png&w=220&q=75"
@@ -17,6 +18,8 @@ export default function Header({isButtonShow}:MyComponentProps , props) {
         />
       </Link>
       {isButtonShow && <SaveButton title={title}/>}
+
+      </div>
 
       <div className="border"></div>
     </div>
