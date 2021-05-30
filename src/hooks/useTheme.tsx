@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { DOMAttributes, useState } from "react";
+import { useState } from "react";
 
 
 export const useTheme = () => {
