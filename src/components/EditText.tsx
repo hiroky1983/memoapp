@@ -1,6 +1,8 @@
 import "tailwindcss/tailwind.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { TextareaHTMLAttributes, useState } from "react";
+import Interweave from "interweave";
+import { HashtagMatcher, UrlMatcher } from "interweave-autolink";
 
 export default function EditText() {
   const [content, setContent] = useState("");
@@ -21,7 +23,10 @@ export default function EditText() {
           onChange={handleContentChange}
           placeholder="メモを入力する"
         />
-      </label>
+<Interweave
+  // content="This contains a URL, https://github.com/milesj/interweave, and a hashtag, #interweave, that will be converted to an anchor link!"
+  matchers={[new UrlMatcher('url'), new HashtagMatcher('hashtag')]}
+/>      </label>
     </div>
   );
 }
