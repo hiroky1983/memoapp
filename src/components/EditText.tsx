@@ -23,10 +23,11 @@ export default function EditText() {
           onChange={handleContentChange}
           placeholder="メモを入力する"
         />
-<Interweave
+{/* <Interweave
   // content="This contains a URL, https://github.com/milesj/interweave, and a hashtag, #interweave, that will be converted to an anchor link!"
   matchers={[new UrlMatcher('url'), new HashtagMatcher('hashtag')]}
-/>      </label>
+/>      */}
+ </label>
     </div>
   );
 }
