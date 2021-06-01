@@ -6,6 +6,8 @@ import DeleteButton from "./button/DeleteButton";
 
 export default function MemosTheme(props) {
   const { themes, onClickDelete } = props;
+  console.log(themes);
+  
 
   return (
     <div className="max-w-screen-xl">
@@ -18,7 +20,7 @@ export default function MemosTheme(props) {
                   <div className="flex">
                     <div className="ml-5">
                       <Link href="/edit_theme">
-                        <a className="text-gray-600 ">{themes}</a>
+                        <a className="text-gray-600 ">{theme}</a>
                       </Link>
                     </div>
                   </div>
