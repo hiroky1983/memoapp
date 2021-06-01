@@ -20,7 +20,7 @@ export default function edit_theme(props) {
       <div className="block text-center  text-4xl p-4 pb-8">
         <p>{themes}</p>
       </div>
-      <EditText />
+      <EditText/>
     </div>
   );
 }
