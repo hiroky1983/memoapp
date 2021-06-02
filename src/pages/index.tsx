@@ -6,10 +6,10 @@ import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
 
 import firebase from "firebase/app";
-import "firebase/auth";
+// import "firebase/auth";
 import "firebase/firestore";
-import "firebase/storage";
-import "firebase/functions";
+// import "firebase/storage";
+// import "firebase/functions";
 import { firebaseConfig } from "../firebase/Config";
 
 firebaseConfig;
@@ -24,8 +24,8 @@ export default function Home(props) {
     onClickDelete,
   } = props;
 
-  const auth = firebase.auth();
-  const storage = firebase.storage();
+  // const auth = firebase.auth();
+  // const storage = firebase.storage();
   const functions = firebase.functions();
   const FirebaseTimestamp = firebase.firestore.Timestamp;
 
