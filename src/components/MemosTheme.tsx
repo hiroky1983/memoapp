@@ -4,15 +4,14 @@ import { title } from "process";
 import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 
+
 export default function MemosTheme(props) {
-  const { themes, onClickDelete } = props;
-  console.log(themes);
-  
+  const { themes, onClickDelete  } = props;    
 
   return (
     <div className="max-w-screen-xl">
       <ul>
-        {themes.map((theme: string, index: number) => {
+        {themes.map((theme: string, index: number, props) => {
           return (
             <div key={theme}>
               <li>

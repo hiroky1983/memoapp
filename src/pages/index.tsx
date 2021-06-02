@@ -38,7 +38,7 @@ export default function Home(props) {
       <InputForms
         inputText={inputText}
         onChange={onChangeInputText}
-        onClick={onClickAdd}
+        onClickAdd={onClickAdd}
         pushEnter={(e) => keyDown(e)}
       />
       

@@ -4,17 +4,11 @@ import { TextareaHTMLAttributes, useState } from "react";
 import Interweave from "interweave";
 import { HashtagMatcher, UrlMatcher } from "interweave-autolink";
 
-export default function EditText() {
-  const [content, setContent] = useState("");
-  
-  const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    (e) => {
-      setContent(e.currentTarget.value);
-    };
+export default function EditText(props) {
+  const { content, handleContentChange } = props;
 
   return (
     <div className="m-3">
-
       <label htmlFor="memo" className="flex-1 pb-20 cursor-text m-8">
         <TextareaAutosize
           id="memo"
@@ -23,11 +17,11 @@ export default function EditText() {
           onChange={handleContentChange}
           placeholder="メモを入力する"
         />
-{/* <Interweave
+        {/* <Interweave
   // content="This contains a URL, https://github.com/milesj/interweave, and a hashtag, #interweave, that will be converted to an anchor link!"
   matchers={[new UrlMatcher('url'), new HashtagMatcher('hashtag')]}
 />      */}
- </label>
+      </label>
     </div>
   );
 }

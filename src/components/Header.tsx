@@ -7,7 +7,8 @@ interface MyComponentProps{
 }
 
 export default function Header({isButtonShow}:MyComponentProps , props) {
-  const title = props;
+  const {title, onClickSave} = props;
+
   return (
     <div className="items-center mx-2">
       <div className="flex items-center" >
@@ -18,7 +19,7 @@ export default function Header({isButtonShow}:MyComponentProps , props) {
         />
       </Link>
       <div className="flex ml-auto">
-      {isButtonShow && <SaveButton title={title}/>}
+      {isButtonShow && <SaveButton onClick={onClickSave} title={title}/>}
 
       </div>
 
