@@ -21,9 +21,9 @@ export const useTheme = () => {
       alert("題名を入力して下さい");
       return inputText;
     }
-    await db.collection("memo").add({
-      theme: newThemes,
-    });
+    // await db.collection("memo").add({
+    //   theme: newThemes,
+    // });
     setThemes(newThemes);
     setInputText("");
   };
@@ -39,9 +39,9 @@ export const useTheme = () => {
         alert("題名を入力して下さい");
         return inputText;
       }
-      await db.collection("memo").add({
-        theme: newThemes,
-      });
+      // await db.collection("memo").add({
+      //   theme: newThemes,
+      // });
       setThemes(newThemes);
       setInputText("");
     }
