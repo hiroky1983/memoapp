@@ -2,18 +2,14 @@ import "tailwindcss/tailwind.css";
 import EditText from "../components/EditText";
 import Header from "../components/Header";
 import { firebaseConfig } from "../firebase/Config";
-import { useTheme } from "../hooks/useTheme"
+import { useTheme } from "../hooks/useTheme";
 
 firebaseConfig;
 useTheme;
 
 export default function edit_theme(props) {
-  const {
-    themes,
-    content,
-    handleContentChange
-  } = props;
-     
+  const { themes, content, handleContentChange } = props;
+
   return (
     <div>
       <Header isButtonShow={true} />

@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Component {...pageProps} {...themeProps} {...noteProps}/>
+      <Component {...pageProps} {...themeProps} {...noteProps} />
     </>
   );
 }
