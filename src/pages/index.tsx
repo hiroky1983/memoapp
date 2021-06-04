@@ -14,6 +14,12 @@ import { firebaseConfig } from "../firebase/Config";
 
 firebaseConfig;
 
+type Memo ={
+  id: number;
+  theme: string;
+  contents:string;
+}
+
 export default function Home(props) {
   const {
     inputText,
