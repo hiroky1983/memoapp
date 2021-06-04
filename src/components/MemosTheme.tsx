@@ -11,7 +11,7 @@ export default function MemosTheme(props) {
   return (
     <div className="max-w-screen-xl">
       <ul>
-        {themes.map((theme: string, index: number, props) => {
+        {themes.map((theme: string, index: number) => {
           return (
             <div key={theme}>
               <li>
