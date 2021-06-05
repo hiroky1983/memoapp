@@ -9,16 +9,16 @@ import MemosTheme from "../components/MemosTheme";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-// import "firebase/functions";
-import { firebaseConfig } from "../firebase/Config";
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "@firebase/app";
 
-firebaseConfig;
-
-type Memo ={
+type Memo = {
   id: number;
   theme: string;
-  contents:string;
-}
+  contents: string;
+};
+getFirestore;
+initializeApp;
 
 export default function Home(props) {
   const {

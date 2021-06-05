@@ -1,11 +1,13 @@
+import { initializeApp } from "@firebase/app";
+import { getFirestore } from "@firebase/firestore";
 import "tailwindcss/tailwind.css";
 import EditText from "../components/EditText";
 import Header from "../components/Header";
-import { firebaseConfig } from "../firebase/Config";
 import { useTheme } from "../hooks/useTheme";
 
-firebaseConfig;
 useTheme;
+getFirestore;
+initializeApp;
 
 export default function edit_theme(props) {
   const { themes, content, handleContentChange } = props;
