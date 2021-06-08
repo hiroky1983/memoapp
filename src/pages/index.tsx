@@ -11,14 +11,10 @@ import "firebase/firestore";
 import "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "@firebase/app";
+import { db, firebaseapp } from "../firebase/Config";
 
-type Memo = {
-  id: number;
-  theme: string;
-  contents: string;
-};
-getFirestore;
-initializeApp;
+db;
+firebaseapp;
 
 export default function Home(props) {
   const {
