@@ -4,6 +4,7 @@ import SaveButton from "./button/SaveButton";
 
 interface MyComponentProps {
   isButtonShow: Boolean;
+  onClick: MouseEvent ;
 }
 
 export default function Header({ isButtonShow }: MyComponentProps, props) {

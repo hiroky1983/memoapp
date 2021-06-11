@@ -1,15 +1,13 @@
 import "tailwindcss/tailwind.css";
 import TextareaAutosize from "react-textarea-autosize";
-import { TextareaHTMLAttributes, useState } from "react";
-import Interweave from "interweave";
-import { HashtagMatcher, UrlMatcher } from "interweave-autolink";
 
 export default function EditText(props) {
-  const { content, handleContentChange } = props;
+  const { content, handleContentChange,theme } = props;
 
   return (
     <div className="m-3">
       <label htmlFor="memo" className="flex-1 pb-20 cursor-text m-8">
+        <p>{theme}</p>
         <TextareaAutosize
           id="memo"
           className="w-full text-lg outline-none resize-none sm:text-2xl"
