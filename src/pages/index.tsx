@@ -19,7 +19,7 @@ export default function Home(props) {
   const [themes, setThemes] = useState([]);
   const theme = props.themes;
   const newThemes = [...themes, inputText];
-  const addMemo = db.collection("memo").add(newThemes);
+  const addMemo = db.collection("memo").add({newThemes});
 
   const onClickSave = props;
 
@@ -36,8 +36,8 @@ export default function Home(props) {
       alert("題名を入力して下さい");
       return inputText;
     }
-    await addMemo;
     setThemes(newThemes);
+    await addMemo;
     setInputText("");
   };
 
@@ -58,7 +58,7 @@ export default function Home(props) {
     }
   };
 
-  const onClickDelete = (index) => {
+  const onClickDelete = (index : number) => {
     const newThemes = [...themes];
     newThemes.splice(index, 1);
     setThemes(newThemes);
