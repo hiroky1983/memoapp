@@ -18,16 +18,14 @@ export default function Home(props) {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
   const theme = props.themes;
-  const newThemes = [...themes, inputText];
-  const addMemo = db.collection("memo").add({newThemes});
-
+  // const newThemes = [...themes, inputText];
   const onClickSave = props;
 
   const onChangeInputText = (e) => setInputText(e.target.value);
 
   const onClickAdd = async () => {
     if (inputText === "") return;
-    // const newThemes = [...themes, inputText];
+    const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
       return inputText;
@@ -36,14 +34,14 @@ export default function Home(props) {
       alert("題名を入力して下さい");
       return inputText;
     }
+    await db.collection("memo").add(newThemes);;
     setThemes(newThemes);
-    await addMemo;
     setInputText("");
   };
 
   const keyDown = async (e) => {
     if (e.keyCode === 13) {
-      // const newThemes = [...themes, inputText];
+      const newThemes = [...themes, inputText];
       if (themes.some((item) => item === inputText)) {
         alert("同じ題名があります");
         return inputText;
@@ -52,7 +50,11 @@ export default function Home(props) {
         alert("題名を入力して下さい");
         return inputText;
       }
-      await addMemo;
+      await db.collection("memo").add({
+        theme: newThemes
+      }).catch((error) => {
+        console.error("Error adding docment" ,error)
+      })
       setThemes(newThemes);
       setInputText("");
     }
