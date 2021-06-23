@@ -10,9 +10,10 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 import { useState } from "react";
-import { db, firebaseConfig } from "../firebase/Config";
+import { db, firebaseConfig } from "../../Config";
 
 firebaseConfig;
+
 
 export default function Home(props) {
   const [inputText, setInputText] = useState("");
@@ -34,7 +35,11 @@ export default function Home(props) {
       alert("題名を入力して下さい");
       return inputText;
     }
-    await db.collection("memo").add(newThemes);;
+    await db.collection("memo").add({
+      theme: newThemes
+    }).catch((error) => {
+      console.error("Error adding docment" ,error)
+    });
     setThemes(newThemes);
     setInputText("");
   };

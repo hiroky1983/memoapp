@@ -2,7 +2,7 @@ import { TextareaHTMLAttributes, useState } from "react";
 import "tailwindcss/tailwind.css";
 import EditText from "../components/EditText";
 import Header from "../components/Header";
-import { db } from "../firebase/Config";
+import { db } from "../../Config";
 
 export default function edit_theme(props) {
   const { themes,theme, onClickSave} = props;
