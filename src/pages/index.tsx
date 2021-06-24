@@ -14,12 +14,10 @@ import { db, firebaseConfig } from "../../Config";
 
 firebaseConfig;
 
-
 export default function Home(props) {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
-  const theme = props.themes;
-  // const newThemes = [...themes, inputText];
+  
   const onClickSave = props;
 
   const onChangeInputText = (e) => setInputText(e.target.value);
