@@ -17,13 +17,13 @@ firebaseConfig;
 export default function Home(props) {
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
-  
+
   const onClickSave = props;
 
   const onChangeInputText = (e) => setInputText(e.target.value);
 
-  const onClickAdd = async () => {
-    if (inputText === "") return;
+  const onClickAdd = async (index: number) => {
+    if (inputText === "") return ;
     const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
@@ -33,11 +33,15 @@ export default function Home(props) {
       alert("題名を入力して下さい");
       return inputText;
     }
-    await db.collection("memo").add({
-      theme: newThemes
-    }).catch((error) => {
-      console.error("Error adding docment" ,error)
-    });
+    // await db
+    //   .collection("memo")
+    //   .add({
+    //     index: +1,
+    //     theme: newThemes,
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error adding docment", error);
+    //   });
     setThemes(newThemes);
     setInputText("");
   };
@@ -53,18 +57,26 @@ export default function Home(props) {
         alert("題名を入力して下さい");
         return inputText;
       }
-      await db.collection("memo").add({
-        theme: newThemes
-      }).catch((error) => {
-        console.error("Error adding docment" ,error)
-      })
+      // await db
+      //   .collection("memo")
+      //   .add({
+      //     theme: newThemes,
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error adding docment", error);
+      //   });
       setThemes(newThemes);
       setInputText("");
     }
   };
 
-  const onClickDelete = (index : number) => {
+  const onClickDelete = async (index: number ) => {
     const newThemes = [...themes];
+  //  try {
+  //    await db.collection("memo").doc().delete()
+  //   } catch (error) {
+  //     console.error("Error deleting docment", error)
+  //   }
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
