@@ -11,10 +11,10 @@ import TextareaAutosize from "react-textarea-autosize";
 import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
-import ReactMarkdown from "react-markdown";
+
 
 export default function MemosTheme(props) {
-  const { themes, onClickDelete } = props;
+  const { themes, onClickDelete  } = props;
   const [isOpen, setIsOpen] = useState(true);
   const [content, setContent] = useState("");
 
@@ -57,6 +57,7 @@ export default function MemosTheme(props) {
                           onClose={setIsOpen}
                         >
                           <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            
                             <Transition.Child
                               as={Fragment}
                               enter="ease-out duration-300"
@@ -85,7 +86,7 @@ export default function MemosTheme(props) {
                               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
-                              <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                              <div className="inline-block align-bottom  bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all  sm:align-middle sm:max-w-lg sm:w-full">
                                 <div className="bg-white  px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                   <Dialog.Title
                                     as="h3"
@@ -101,7 +102,9 @@ export default function MemosTheme(props) {
                                     value={content}
                                     onChange={handleContentChange}
                                     placeholder="メモを入力する"
-                                  />
+                                  >
+                                    {content}
+                                  </TextareaAutosize>
                                 </div>
                                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                   <button type="button" onClick={closeModal}>

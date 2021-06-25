@@ -13,6 +13,13 @@ import { useState } from "react";
 import { db, firebaseConfig } from "../../Config";
 
 firebaseConfig;
+function createData(id:number, theme: string , content: string) {
+  return{id , theme , content}
+}
+
+const themes = [
+  createData(1 , "React" ,"Reactは、、、" )
+];
 
 export default function Home(props) {
   const [inputText, setInputText] = useState("");
@@ -80,6 +87,9 @@ export default function Home(props) {
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
+
+
+
   return (
     <div>
       <Head>
