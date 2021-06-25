@@ -88,8 +88,6 @@ export default function Home(props) {
     setThemes(newThemes);
   };
 
-
-
   return (
     <div>
       <Head>

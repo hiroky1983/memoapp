@@ -12,10 +12,9 @@ import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
-
 export default function MemosTheme(props) {
   const { themes, onClickDelete  } = props;
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState("");
 
   const cancelButtonRef = useRef(null);
@@ -31,6 +30,7 @@ export default function MemosTheme(props) {
     (e) => {
       setContent(e.currentTarget.value);
     };
+
   return (
     <div className="max-w-screen-xl">
       <ul>
