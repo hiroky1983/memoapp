@@ -31,7 +31,7 @@ export default function Home(props) {
 
   const onClickAdd = async (index: number) => {
     if (inputText === "") return ;
-    const newThemes = [...themes, inputText];
+    // const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
       return inputText;
@@ -49,13 +49,13 @@ export default function Home(props) {
     //   .catch((error) => {
     //     console.error("Error adding docment", error);
     //   });
-    setThemes(newThemes);
+    setThemes((prev) => { return [...prev, inputText] })
     setInputText("");
   };
 
   const keyDown = async (e) => {
     if (e.keyCode === 13) {
-      const newThemes = [...themes, inputText];
+      // const newThemes = [...themes, inputText];
       if (themes.some((item) => item === inputText)) {
         alert("同じ題名があります");
         return inputText;
@@ -72,7 +72,7 @@ export default function Home(props) {
       //   .catch((error) => {
       //     console.error("Error adding docment", error);
       //   });
-      setThemes(newThemes);
+      setThemes((prev) => { return [...prev, inputText] })
       setInputText("");
     }
   };

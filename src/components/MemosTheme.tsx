@@ -34,7 +34,7 @@ export default function MemosTheme(props) {
   return (
     <div className="max-w-screen-xl">
       <ul>
-        {themes.map((theme: string, index: number) => {         
+        {themes.map((theme: string, index: number ) => {         
           return (
             <div key={theme}>
               <li>
@@ -107,7 +107,7 @@ export default function MemosTheme(props) {
                                   </TextareaAutosize>
                                 </div>
                                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                  <button type="button" onClick={closeModal}>
+                                  <button type="button" onClick={closeModal} ref={cancelButtonRef}>
                                     <SaveButton />
                                   </button>
                                 </div>
