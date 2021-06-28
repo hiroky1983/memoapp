@@ -1,6 +1,4 @@
-import Link from "next/link";
 import "tailwindcss/tailwind.css";
-import SaveButton from "./button/SaveButton";
 
 export default function Header() {
   return (
@@ -11,6 +9,7 @@ export default function Header() {
           className="p-5 cursor-pointer flex"
         />
       </div>
+
       <div className="border"></div>
     </div>
   );
