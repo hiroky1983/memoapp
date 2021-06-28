@@ -14,9 +14,6 @@ export default function Header(props) {
             className="p-5 cursor-pointer flex"
           />
         </Link>
-        <div className="flex ml-auto">
-          <SaveButton onClick={onClickSave} title={title} />
-        </div>
       </div>
 
       <div className="border"></div>
