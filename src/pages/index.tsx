@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
+import InfiniteScroll  from "react-infinite-scroller"
 
 // import firebase from "firebase/app";
 import "firebase/auth";
@@ -13,13 +14,11 @@ import { useState } from "react";
 import { db, firebaseConfig } from "../../Config";
 
 firebaseConfig;
-function createData(id:number, theme: string , content: string) {
-  return{id , theme , content}
+function createData(id: number, theme: string, content: string) {
+  return { id, theme, content };
 }
 
-const themes = [
-  createData(1 , "React" ,"Reactは、、、" )
-];
+const themes = [createData(1, "React", "Reactは、、、")];
 
 export default function Home(props) {
   const [inputText, setInputText] = useState("");
@@ -30,7 +29,7 @@ export default function Home(props) {
   const onChangeInputText = (e) => setInputText(e.target.value);
 
   const onClickAdd = async (index: number) => {
-    if (inputText === "") return ;
+    if (inputText === "") return;
     // const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
@@ -49,7 +48,9 @@ export default function Home(props) {
     //   .catch((error) => {
     //     console.error("Error adding docment", error);
     //   });
-    setThemes((prev) => { return [...prev, inputText] })
+    setThemes((prev) => {
+      return [...prev, inputText];
+    });
     setInputText("");
   };
 
@@ -72,28 +73,40 @@ export default function Home(props) {
       //   .catch((error) => {
       //     console.error("Error adding docment", error);
       //   });
-      setThemes((prev) => { return [...prev, inputText] })
+      setThemes((prev) => {
+        return [...prev, inputText];
+      });
       setInputText("");
     }
   };
 
-  const onClickDelete = async (index: number ) => {
+  const onClickDelete = async (index: number) => {
     const newThemes = [...themes];
-  //  try {
-  //    await db.collection("memo").doc().delete()
-  //   } catch (error) {
-  //     console.error("Error deleting docment", error)
-  //   }
+    //  try {
+    //    await db.collection("memo").doc().delete()
+    //   } catch (error) {
+    //     console.error("Error deleting docment", error)
+    //   }
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
+
+//   const loadMore = (page) => {
+//   setThemes([...themes, page])
+// }
+//   const loader =<div className="loader" key={0}>Loading ...</div>;
 
   return (
     <div>
       <Head>
         <title>MemoApp</title>
       </Head>
-      <Header/>
+      <InfiniteScroll
+        // loadMore={loadMore}    //項目を読み込む際に処理するコールバック関数
+        hasMore={true}         //読み込みを行うかどうかの判定
+        // loader={loader}
+        >
+      <Header />
       <InputForms
         inputText={inputText}
         onChange={onChangeInputText}
@@ -101,6 +114,7 @@ export default function Home(props) {
         pushEnter={(e) => keyDown(e)}
       />
       <MemosTheme themes={themes} onClickDelete={onClickDelete} />
-    </div>
+      </InfiniteScroll>
+      </div>
   );
 }
