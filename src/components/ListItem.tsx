@@ -13,7 +13,7 @@ import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
 export default function ListItem(props) {
-  const { themes, onClickDelete, theme, index } = props;
+  const { onClickDelete, theme, index } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState("");
 

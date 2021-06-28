@@ -3,7 +3,8 @@ import CreateButton from "./button/CreateButton";
 import SearchButton from "./button/SearchButton";
 
 export default function InputForms(props) {
-  const { inputText, onChange, onClickAdd, onClickSeach, pushEnter, title } = props;
+  const { inputText, onChange, onClickAdd, onClickSeach, pushEnter, title } =
+    props;
 
   return (
     <div className="p-6 m-1 max-w-screen-xl	">
