@@ -92,7 +92,7 @@ export default function ListItem(props) {
                           </Dialog.Title>
                           <TextareaAutosize
                             id="memo"
-                            className="w-full text-lg outline-none resize-none sm:text-2xl"
+                            className="w-full text-sm outline-none resize-none sm:text-base pt-2"
                             maxRows={4}
                             aria-label="maximum height"
                             value={content}
