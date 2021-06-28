@@ -93,7 +93,7 @@ export default function Home(props) {
       <Head>
         <title>MemoApp</title>
       </Head>
-      <Header isButtonShow={false} onClick={onClickSave} />
+      <Header/>
       <InputForms
         inputText={inputText}
         onChange={onChangeInputText}

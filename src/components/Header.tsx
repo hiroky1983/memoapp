@@ -2,12 +2,7 @@ import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import SaveButton from "./button/SaveButton";
 
-interface MyComponentProps {
-  isButtonShow: Boolean;
-  onClick: MouseEvent ;
-}
-
-export default function Header({ isButtonShow }: MyComponentProps, props) {
+export default function Header(props) {
   const { title, onClickSave } = props;
 
   return (
@@ -20,7 +15,7 @@ export default function Header({ isButtonShow }: MyComponentProps, props) {
           />
         </Link>
         <div className="flex ml-auto">
-          {isButtonShow && <SaveButton onClick={onClickSave} title={title} />}
+          <SaveButton onClick={onClickSave} title={title} />
         </div>
       </div>
 
