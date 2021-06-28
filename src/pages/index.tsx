@@ -4,7 +4,8 @@ import "tailwindcss/tailwind.css";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
-import InfiniteScroll  from "react-infinite-scroller"
+import InfiniteScroll from "react-infinite-scroller";
+
 
 // import firebase from "firebase/app";
 import "firebase/auth";
@@ -28,7 +29,7 @@ export default function Home(props) {
 
   const onChangeInputText = (e) => setInputText(e.target.value);
 
-  const onClickAdd = async (index: number) => {
+  const onClickAdd = async () => {
     if (inputText === "") return;
     // const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
@@ -91,10 +92,10 @@ export default function Home(props) {
     setThemes(newThemes);
   };
 
-//   const loadMore = (page) => {
-//   setThemes([...themes, page])
-// }
-//   const loader =<div className="loader" key={0}>Loading ...</div>;
+  //   const loadMore = (page) => {
+  //   setThemes([...themes, page])
+  // }
+  //   const loader =<div className="loader" key={0}>Loading ...</div>;
 
   return (
     <div>
@@ -102,19 +103,19 @@ export default function Home(props) {
         <title>MemoApp</title>
       </Head>
       <InfiniteScroll
-        // loadMore={loadMore}    //項目を読み込む際に処理するコールバック関数
-        hasMore={true}         //読み込みを行うかどうかの判定
+        // loadMore={loadMore}
+        hasMore={true}
         // loader={loader}
-        >
-      <Header />
-      <InputForms
-        inputText={inputText}
-        onChange={onChangeInputText}
-        onClickAdd={onClickAdd}
-        pushEnter={(e) => keyDown(e)}
-      />
-      <MemosTheme themes={themes} onClickDelete={onClickDelete} />
+      >
+        <Header />
+        <InputForms
+          inputText={inputText}
+          onChange={onChangeInputText}
+          onClickAdd={onClickAdd}
+          pushEnter={(e) => keyDown(e)}
+        />
+        <MemosTheme themes={themes} onClickDelete={onClickDelete} />
       </InfiniteScroll>
-      </div>
+    </div>
   );
 }
