@@ -4,7 +4,7 @@ import ListItem from "../components/ListItem";
 import "tailwindcss/tailwind.css";
 
 export default function MemosTheme(props) {
-  const { themes, onClickDelete } = props;
+  const { themes, onClickDelete,onClickSave,content,handleContentChange } = props;
   return (
     <div className="max-w-screen-xl">
       <ul>
@@ -14,6 +14,9 @@ export default function MemosTheme(props) {
               theme={theme}
               index={index}
               onClickDelete={onClickDelete}
+              onClickSave={onClickSave}
+              content={content}
+              handleContentChange={handleContentChange}
             />
           );
         })}

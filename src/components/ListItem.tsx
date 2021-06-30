@@ -1,7 +1,6 @@
 import { title } from "process";
 import React, {
   Fragment,
-  TextareaHTMLAttributes,
   useRef,
   useState,
 } from "react";
@@ -13,10 +12,8 @@ import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
 export default function ListItem(props) {
-  const { onClickDelete, theme, index } = props;
+  const { onClickDelete,onClickSave, theme, index ,content ,handleContentChange } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState("");
-
   const cancelButtonRef = useRef(null);
 
   const closeModal = () => {
@@ -26,11 +23,6 @@ export default function ListItem(props) {
   const openModal = () => {
     setIsOpen(true);
   };
-
-  const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    (e) => {
-      setContent(e.currentTarget.value);
-    };
 
   return (
     <div key={props.id}>
@@ -108,7 +100,7 @@ export default function ListItem(props) {
                             onClick={closeModal}
                             ref={cancelButtonRef}
                           >
-                            <SaveButton />
+                            <SaveButton onClick={onClickSave}/>
                           </button>
                         </div>
                       </div>
