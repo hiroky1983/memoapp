@@ -6,32 +6,32 @@ import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
 import InfiniteScroll from "react-infinite-scroller";
 
-
 // import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import { useState } from "react";
+import { TextareaHTMLAttributes, useState } from "react";
 import { db, firebaseConfig } from "../../Config";
 
 firebaseConfig;
-function createData(id: number, theme: string, content: string) {
-  return { id, theme, content };
-}
-
-const themes = [createData(1, "React", "Reactは、、、")];
 
 export default function Home(props) {
+  const theme = props;
+  const { onClickSearch, onClickBoolean } = props;
   const [inputText, setInputText] = useState("");
   const [themes, setThemes] = useState([]);
-
-  const onClickSave = props;
+  const [content, setContent] = useState("");
+  const newThemes = [...themes, inputText];
 
   const onChangeInputText = (e) => setInputText(e.target.value);
 
+  const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
+    (e) => {
+      setContent(e.currentTarget.value);
+    };
+
   const onClickAdd = async () => {
     if (inputText === "") return;
-    // const newThemes = [...themes, inputText];
     if (themes.some((item) => item === inputText)) {
       alert("同じ題名があります");
       return inputText;
@@ -40,15 +40,6 @@ export default function Home(props) {
       alert("題名を入力して下さい");
       return inputText;
     }
-    // await db
-    //   .collection("memo")
-    //   .add({
-    //     index: +1,
-    //     theme: newThemes,
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding docment", error);
-    //   });
     setThemes((prev) => {
       return [...prev, inputText];
     });
@@ -66,14 +57,6 @@ export default function Home(props) {
         alert("題名を入力して下さい");
         return inputText;
       }
-      // await db
-      //   .collection("memo")
-      //   .add({
-      //     theme: newThemes,
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error adding docment", error);
-      //   });
       setThemes((prev) => {
         return [...prev, inputText];
       });
@@ -81,6 +64,18 @@ export default function Home(props) {
     }
   };
 
+  const onClickSave = async () => {
+    // console.log("Saved");
+    try {
+      await db.collection("memo").add({
+        // id: theme,
+        theme: newThemes,
+        content: content,
+      });
+    } catch (error) {
+      console.error("Error adding docment", error);
+    }
+  };
   const onClickDelete = async (index: number) => {
     const newThemes = [...themes];
     //  try {
@@ -113,8 +108,17 @@ export default function Home(props) {
           onChange={onChangeInputText}
           onClickAdd={onClickAdd}
           pushEnter={(e) => keyDown(e)}
+          value={inputText}
+          onClickSeach={onClickSearch}
+          onClickBoolean={onClickBoolean}
         />
-        <MemosTheme themes={themes} onClickDelete={onClickDelete} />
+        <MemosTheme
+          themes={themes}
+          onClickDelete={onClickDelete}
+          handleContentChange={handleContentChange}
+          onClickSave={onClickSave}
+          content={content}
+        />
       </InfiniteScroll>
     </div>
   );
