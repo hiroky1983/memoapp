@@ -65,7 +65,6 @@ export default function Home(props) {
   };
 
   const onClickSave = async () => {
-    // console.log("Saved");
     try {
       await db.collection("memo").add({
         // id: theme,
@@ -76,13 +75,13 @@ export default function Home(props) {
       console.error("Error adding docment", error);
     }
   };
-  const onClickDelete = async (index: number) => {
+  const onClickDelete = async (index: number ) => {
     const newThemes = [...themes];
-    //  try {
-    //    await db.collection("memo").doc().delete()
-    //   } catch (error) {
-    //     console.error("Error deleting docment", error)
-    //   }
+     try {
+       await db.collection("memo").doc().delete()
+      } catch (error) {
+        console.error("Error deleting docment", error)
+      }
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
