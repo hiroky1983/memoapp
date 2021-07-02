@@ -11,6 +11,7 @@ export default function MemosTheme(props) {
         {themes.map((theme: string, index: number) => {
           return (
             <ListItem
+              key={theme}
               theme={theme}
               index={index}
               onClickDelete={onClickDelete}
