@@ -1,9 +1,5 @@
 import { title } from "process";
-import React, {
-  Fragment,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -12,7 +8,14 @@ import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
 export default function ListItem(props) {
-  const { onClickDelete,onClickSave, theme, index ,content ,handleContentChange } = props;
+  const {
+    onClickDelete,
+    onClickSave,
+    theme,
+    index,
+    content,
+    handleContentChange,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
@@ -100,7 +103,7 @@ export default function ListItem(props) {
                             onClick={closeModal}
                             ref={cancelButtonRef}
                           >
-                            <SaveButton onClick={onClickSave}/>
+                            <SaveButton onClick={onClickSave} />
                           </button>
                         </div>
                       </div>

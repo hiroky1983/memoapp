@@ -1,7 +1,9 @@
+import React from "react";
+
 import "tailwindcss/tailwind.css";
 import { AiOutlineDelete } from "react-icons/ai";
 
-export default function DeleteButton(props) {
+export default function DeleteButton(props):JSX.Element {
   const { onClick } = props;
   return (
     <div className="items-center">

@@ -1,3 +1,5 @@
+import React from "react";
+
 import "tailwindcss/tailwind.css";
 import { AiFillEdit } from "react-icons/ai";
 
