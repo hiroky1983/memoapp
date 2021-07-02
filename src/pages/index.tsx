@@ -4,7 +4,7 @@ import "tailwindcss/tailwind.css";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import {
+import React, {
   TextareaHTMLAttributes,
   useState,
   useCallback,
