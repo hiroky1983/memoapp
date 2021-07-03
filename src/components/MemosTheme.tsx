@@ -6,6 +6,7 @@ import "tailwindcss/tailwind.css";
 export default function MemosTheme(props) {
   const { themes, onClickDelete, onClickSave, content, handleContentChange } =
     props;
+
   return (
     <div className="max-w-screen-xl">
       <ul>
@@ -19,7 +20,7 @@ export default function MemosTheme(props) {
               onClickSave={onClickSave}
               content={content}
               handleContentChange={handleContentChange}
-            />
+            />  
           );
         })}
       </ul>

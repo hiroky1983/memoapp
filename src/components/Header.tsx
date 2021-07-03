@@ -1,7 +1,7 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
 
-export default function Header() {
+export default function Header () {
   return (
     <div className="items-center mx-2">
       <div className="flex items-center">
