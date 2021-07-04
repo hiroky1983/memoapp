@@ -1,4 +1,3 @@
-
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 import "firebase/auth";
@@ -15,19 +14,20 @@ import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
 import InfiniteScroll from "react-infinite-scroller";
+import { InputHTMLAttributes } from "react";
 
 // import firebase from "firebase/app";
 
 firebaseConfig;
 
-export default function Home(props) {
+export default function Home(props:{onClickSearch:React.MouseEvent<HTMLElement>, onClickBoolean:boolean}):JSX.Element {
   const { onClickSearch, onClickBoolean } = props;
   const [inputText, setInputText] = useState("");
   const [content, setContent] = useState("");
   const [themes, setThemes] = useState([]);
   const newThemes = [...themes, inputText];
 
-  const onChangeInputText = useCallback(
+  const onChangeInputText:InputHTMLAttributes<HTMLInputElement>["onChange"] = useCallback(
     (e) => setInputText(e.target.value),
     []
   );

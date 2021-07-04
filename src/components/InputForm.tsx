@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css";
 import CreateButton from "./button/CreateButton";
 import SearchButton from "./button/SearchButton";
 
-export default function InputForms(props) {
+export default function InputForms(props) :JSX.Element {
   const { inputText, onChange, onClickAdd, pushEnter, title } = props;
   const [onClickBool, setOnClickBool] = useState(false);
   const [keyword, setKeyword] = useState("");
