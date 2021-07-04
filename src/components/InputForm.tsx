@@ -1,67 +1,17 @@
-import React, { InputHTMLAttributes, useCallback, useState } from "react";
+import React ,{ useState } from "react";
 import "tailwindcss/tailwind.css";
 import CreateButton from "./button/CreateButton";
 import SearchButton from "./button/SearchButton";
 
-export const useInputActions = () =>{
+export default function InputForms(props) {
+  const { inputText, onChange, onClickAdd, pushEnter, title } = props;
   const [onClickBool, setOnClickBool] = useState(false);
-  const [inputText, setInputText] = useState("");
   const [keyword, setKeyword] = useState("");
-  const [themes, setThemes] = useState([]);
-  
-  const onClickSearch = () => {
+
+  const onClickSearch = (e) => {
+    setKeyword(e.target.value);
     setOnClickBool(!onClickBool);
   };
-  const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
-    useCallback((e) => {
-      setInputText(e.target.value);
-    }, []);
-  
-  const onChangeSearchText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
-    useCallback((e) => {
-      setKeyword(e.target.value);
-    }, []);
-  
-  const onClickAdd = () => {
-    if (inputText === "") return;
-    if (themes.some((item) => item === inputText)) {
-      alert("同じ題名があります");
-      return inputText;
-    }
-    if (inputText.length === 0) {
-      alert("題名を入力して下さい");
-      return inputText;
-    }
-    setThemes((prev) => {
-      return [...prev, inputText];
-    });
-    setInputText("");
-  };
-  
-  const keyDown = (e) => {
-    if (e.keyCode === 13) {
-      if (themes.some((item) => item === inputText)) {
-        alert("同じ題名があります");
-        return inputText;
-      }
-      if (inputText.length === 0) {
-        alert("題名を入力して下さい");
-        return inputText;
-      }
-      setThemes((prev) => {
-        return [...prev, inputText];
-      });
-      setInputText("");
-      // onClickAdd();
-    }
-  };
-return { keyword,onClickSearch,onChangeInputText,onChangeSearchText,onClickAdd,keyDown,onClickBool,inputText}
-}
-
-export default function InputForms(props) {
-  const { title , pushEnter} = props;
-  const { keyword,onClickSearch,onChangeInputText,onChangeSearchText,onClickAdd,keyDown,onClickBool,inputText } = useInputActions();
-
   return (
     <div className="p-6 m-1 max-w-screen-xl	">
       <div className="bg-white flex items-center rounded-full shadow-xl ">
@@ -71,9 +21,9 @@ export default function InputForms(props) {
             id="search"
             type="text"
             placeholder="検索する言葉を入力"
-            value={keyword}
-            onChange={onChangeSearchText}
-            // onKeyDown={pushEnter}
+            value={inputText}
+            onChange={onChange}
+            onKeyDown={pushEnter}
           />
         ) : (
           <input
@@ -82,22 +32,16 @@ export default function InputForms(props) {
             type="text"
             placeholder="題名を入力"
             value={inputText}
-            onChange={onChangeInputText}
+            onChange={onChange}
             onKeyDown={pushEnter}
           />
         )}
         <div className="p-4 flex">
-          <CreateButton
-            onClick={onClickAdd}
-            title={title}
-            pushEnter={(e) => keyDown(e)}
-            onClickBool={onClickBool}
-          />
+          <CreateButton onClick={onClickAdd} title={title} />
           <SearchButton
             onClick={onClickSearch}
             title={title}
-            onClickBool={onClickBool}
-            pushEnter={(e) => keyDown(e)}
+            onClickBoolean={onClickBool}
           />
         </div>
       </div>

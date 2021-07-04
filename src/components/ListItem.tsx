@@ -1,10 +1,5 @@
 import { title } from "process";
-import React, {
-  Fragment,
-  TextareaHTMLAttributes,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -12,19 +7,15 @@ import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
-export const useCreateTheme = () => {
-  const [content, setContent] = useState("");
-
-  const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    (e) => {
-      setContent(e.currentTarget.value);
-    };
-
-  return { content, handleContentChange };
-};
 export default function ListItem(props) {
-  const { onClickDelete, onClickSave, theme, index } = props;
-  const { content, handleContentChange } = useCreateTheme();
+  const {
+    onClickDelete,
+    onClickSave,
+    theme,
+    index,
+    content,
+    handleContentChange,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
