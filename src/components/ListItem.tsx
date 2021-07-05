@@ -7,7 +7,7 @@ import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
-export default function ListItem(props) :JSX.Element {
+export default function ListItem(props): JSX.Element {
   const {
     onClickDelete,
     onClickSave,

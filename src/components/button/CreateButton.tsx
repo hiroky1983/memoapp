@@ -3,7 +3,7 @@ import React from "react";
 import "tailwindcss/tailwind.css";
 import { AiFillEdit } from "react-icons/ai";
 
-export default function CreateButton(props) {
+export default function CreateButton(props): JSX.Element  {
   const { onClick } = props;
   return (
     <div className="items-center">

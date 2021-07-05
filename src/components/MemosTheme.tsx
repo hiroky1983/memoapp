@@ -3,7 +3,7 @@ import ListItem from "../components/ListItem";
 
 import "tailwindcss/tailwind.css";
 
-export default function MemosTheme(props):JSX.Element  {
+export default function MemosTheme(props): JSX.Element {
   const { themes, onClickDelete, onClickSave, content, handleContentChange } =
     props;
 
@@ -20,7 +20,7 @@ export default function MemosTheme(props):JSX.Element  {
               onClickSave={onClickSave}
               content={content}
               handleContentChange={handleContentChange}
-            />  
+            />
           );
         })}
       </ul>
