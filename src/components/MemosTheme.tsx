@@ -1,9 +1,16 @@
-import React from "react";
+import React, { DOMAttributes, MouseEventHandler, ReactHTMLElement } from "react";
 import ListItem from "../components/ListItem";
 
 import "tailwindcss/tailwind.css";
+import { TextareaHTMLAttributes } from "react";
 
-export default function MemosTheme(props): JSX.Element {
+export default function MemosTheme(props: {
+  themes: string[],
+  onClickDelete: any,
+  onClickSave:  DOMAttributes<HTMLButtonElement>["onClick"],
+  content: string,
+  handleContentChange:TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"]
+}): JSX.Element {
   const { themes, onClickDelete, onClickSave, content, handleContentChange } =
     props;
 
