@@ -1,4 +1,4 @@
-import React, { DOMAttributes, MouseEventHandler, ReactHTMLElement } from "react";
+import React, { DOMAttributes } from "react";
 import ListItem from "../components/ListItem";
 
 import "tailwindcss/tailwind.css";

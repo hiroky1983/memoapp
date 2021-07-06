@@ -2,7 +2,7 @@ import React from "react";
 import "tailwindcss/tailwind.css";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export default function SearchButton(props) {
+export default function SearchButton(props): JSX.Element {
   const { onClick } = props;
   return (
     <div className="items-center">

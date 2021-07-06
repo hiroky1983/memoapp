@@ -15,7 +15,7 @@ import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import MemosTheme from "../components/MemosTheme";
 import InfiniteScroll from "react-infinite-scroller";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 
 firebaseConfig;
 

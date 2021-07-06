@@ -3,7 +3,7 @@ import React from "react";
 import { AiFillSave } from "react-icons/ai";
 import "tailwindcss/tailwind.css";
 
-export default function SaveButton(props) {
+export default function SaveButton(props): JSX.Element {
   const { pushEnter } = props;
   return (
     <div className="items-center ">
