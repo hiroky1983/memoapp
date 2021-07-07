@@ -13,7 +13,7 @@ import "firebase/storage";
 import { db, firebaseConfig } from "../../Config";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
-import MemosTheme from "../components/MemosTheme";
+import ListItem from "../components/ListItem";
 import InfiniteScroll from "react-infinite-scroller";
 // import { useMemo } from "react";
 
@@ -122,13 +122,23 @@ export default function Home(props: {
           onClickSeach={onClickSearch}
           onClickBoolean={onClickBoolean}
         />
-        <MemosTheme
-          themes={themes}
-          onClickDelete={onClickDelete}
-          handleContentChange={handleContentChange}
-          onClickSave={onClickSave}
-          content={content}
-        />
+    <div className="max-w-screen-xl">
+      <ul>
+        {themes.map((theme: string, index: number) => {
+          return (
+            <ListItem
+              key={theme}
+              theme={theme}
+              index={index}
+              onClickDelete={onClickDelete}
+              onClickSave={onClickSave}
+              content={content}
+              handleContentChange={handleContentChange}
+            />
+          );
+        })}
+      </ul>
+    </div>
       </InfiniteScroll>
     </div>
   );
