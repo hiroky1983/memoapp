@@ -30,12 +30,15 @@ export default function Home(props: {
   const newThemes = [...themes, inputText];
 
   const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
-    useCallback((e) => setInputText(e.target.value), []);
+    useCallback((e) => setInputText(e.target.value), [setInputText]);
 
   const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
-    useCallback((e) => {
-      setContent(e.currentTarget.value);
-    },[]);
+    useCallback(
+      (e) => {
+        setContent(e.currentTarget.value);
+      },
+      [setContent]
+    );
 
   const onClickAdd = () => {
     if (inputText === "") return;
@@ -85,7 +88,12 @@ export default function Home(props: {
   const onClickDelete = async (index: number) => {
     const newThemes = [...themes];
     try {
-      await db.collection("memo").doc().delete();
+      const querySnapshot = await db.collection("memo").get();
+      querySnapshot.docs.map((postDoc) => postDoc.id);
+      querySnapshot.forEach((postDoc) => {
+        console.log(postDoc.id, " => ", JSON.stringify(postDoc.data()));
+      });
+      await db.app.delete();
     } catch (error) {
       console.error("Error deleting docment", error);
     }
@@ -122,23 +130,23 @@ export default function Home(props: {
           onClickSeach={onClickSearch}
           onClickBoolean={onClickBoolean}
         />
-    <div className="max-w-screen-xl">
-      <ul>
-        {themes.map((theme: string, index: number) => {
-          return (
-            <ListItem
-              key={theme}
-              theme={theme}
-              index={index}
-              onClickDelete={onClickDelete}
-              onClickSave={onClickSave}
-              content={content}
-              handleContentChange={handleContentChange}
-            />
-          );
-        })}
-      </ul>
-    </div>
+        <div className="max-w-screen-xl">
+          <ul>
+            {themes.map((theme: string, index: number) => {
+              return (
+                <ListItem
+                  key={theme}
+                  theme={theme}
+                  index={index}
+                  onClickDelete={onClickDelete}
+                  onClickSave={onClickSave}
+                  content={content}
+                  handleContentChange={handleContentChange}
+                />
+              );
+            })}
+          </ul>
+        </div>
       </InfiniteScroll>
     </div>
   );
