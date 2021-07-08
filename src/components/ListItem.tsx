@@ -1,5 +1,11 @@
 import { title } from "process";
-import React, { DOMAttributes, Fragment, TextareaHTMLAttributes, useRef, useState } from "react";
+import React, {
+  DOMAttributes,
+  Fragment,
+  TextareaHTMLAttributes,
+  useRef,
+  useState,
+} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -7,14 +13,7 @@ import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
-export default function ListItem(props: {
-  onClickDelete: any;
-  onClickSave: DOMAttributes<HTMLButtonElement>["onClick"];
-  theme: string;
-  index: number;
-  content: string;
-  handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
-}): JSX.Element {
+export default function ListItem(props): JSX.Element {
   const {
     onClickDelete,
     onClickSave,
@@ -105,13 +104,13 @@ export default function ListItem(props: {
                           </TextareaAutosize>
                         </div>
                         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                          <button
-                            type="button"
+                          <div
+                            // type="button"
                             onClick={closeModal}
                             ref={cancelButtonRef}
                           >
                             <SaveButton onClick={onClickSave} />
-                          </button>
+                          </div>
                         </div>
                       </div>
                     </Transition.Child>

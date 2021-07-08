@@ -1,5 +1,5 @@
-export type MemoType = {
-  id: number;
+export type MemoType = [{
+  id: string,
   theme: string;
-  contents: string;
-};
+  content: string;
+}];

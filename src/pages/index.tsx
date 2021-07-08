@@ -3,6 +3,7 @@ import React, {
   InputHTMLAttributes,
   useState,
   useCallback,
+  useEffect,
 } from "react";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
@@ -14,6 +15,7 @@ import { db, firebaseConfig } from "../../Config";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
 import ListItem from "../components/ListItem";
+import MemosTheme from "../components/MemosTheme";
 import InfiniteScroll from "react-infinite-scroller";
 // import { useMemo } from "react";
 
@@ -28,9 +30,25 @@ export default function Home(props: {
   const [content, setContent] = useState("");
   const [themes, setThemes] = useState([]);
   const newThemes = [...themes, inputText];
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // const getPosts = useCallback(async () => {
+  //   const querySnapshot = await db.collection("memo")
+  //   .orderBy('theme')
+  //   .limit(20)
+  //   .get()
+  //   setPosts()
+  //   setLoading(false);
+  // }, []);
+
+  // useEffect(() => {
+  //   getPosts();
+  // }, [getPosts]);
 
   const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
-    useCallback((e) => setInputText(e.target.value), [setInputText]);
+    useCallback(
+      (e) => setInputText(e.target.value), [setInputText]);
 
   const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
     useCallback(
@@ -74,17 +92,20 @@ export default function Home(props: {
     }
   };
 
-  const onClickSave = async () => {
+  const onClickSave = async (theme , post) => {
+    console.log("Saved");
     try {
       await db.collection("memo").add({
-        // id: theme,
+        // id: post.id,
         theme: newThemes,
         content: content,
       });
     } catch (error) {
       console.error("Error adding docment", error);
     }
+    console.log(theme);
   };
+
   const onClickDelete = async (index: number) => {
     const newThemes = [...themes];
     try {
@@ -101,25 +122,29 @@ export default function Home(props: {
     setThemes(newThemes);
   };
 
-  const loadMore = (index) => {
-    if (themes.length > 5) {
-      setThemes([...themes, index]);
-    }
-  };
-  const loader = () => {
-    loadMore.length > 5 && (
-      <div className="loader" key={0}>
-        Loading ...
-      </div>
-    );
-  };
+  // const loadMore = (index) => {
+  //   if (themes.length > 5) {
+  //     setThemes([...themes, index]);
+  //   }
+  // };
+  // const loader = () => {
+  //   loadMore.length > 5 && (
+  //     <div className="loader" key={0}>
+  //       Loading ...
+  //     </div>
+  //   );
+  // };
 
   return (
     <div>
       <Head>
         <title>MemoApp</title>
       </Head>
-      <InfiniteScroll loadMore={loadMore} hasMore={true} loader={loader}>
+      {/* <InfiniteScroll 
+      // loadMore={loadMore} 
+      hasMore={true} 
+      // loader={loader}
+      > */}
         <Header />
         <InputForms
           inputText={inputText}
@@ -130,24 +155,14 @@ export default function Home(props: {
           onClickSeach={onClickSearch}
           onClickBoolean={onClickBoolean}
         />
-        <div className="max-w-screen-xl">
-          <ul>
-            {themes.map((theme: string, index: number) => {
-              return (
-                <ListItem
-                  key={theme}
-                  theme={theme}
-                  index={index}
-                  onClickDelete={onClickDelete}
-                  onClickSave={onClickSave}
-                  content={content}
-                  handleContentChange={handleContentChange}
-                />
-              );
-            })}
-          </ul>
-        </div>
-      </InfiniteScroll>
+        <MemosTheme
+          themes={themes}
+          onClickDelete={onClickDelete}
+          handleContentChange={handleContentChange}
+          onClick={onClickSave}
+          content={content}
+        />
+      {/* </InfiniteScroll> */}
     </div>
   );
 }
