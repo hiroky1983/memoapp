@@ -33,18 +33,19 @@ export default function Home(props: {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // const getPosts = useCallback(async () => {
-  //   const querySnapshot = await db.collection("memo")
-  //   .orderBy('theme')
-  //   .limit(20)
-  //   .get()
-  //   setPosts()
-  //   setLoading(false);
-  // }, []);
+  const getPosts = useCallback(async () => {
+    let postRef = await db.collection("memo")
+    .orderBy('theme')
+    .limit(20)
+    const querySnapshot = await postRef.get()
+    return querySnapshot.docs
+    // setPosts()
+    setLoading(false);
+  }, []);
 
-  // useEffect(() => {
-  //   getPosts();
-  // }, [getPosts]);
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
     useCallback(
@@ -97,7 +98,7 @@ export default function Home(props: {
     try {
       await db.collection("memo").add({
         // id: post.id,
-        theme: newThemes,
+        theme: theme,
         content: content,
       });
     } catch (error) {
