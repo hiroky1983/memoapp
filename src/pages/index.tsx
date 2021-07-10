@@ -29,19 +29,25 @@ export default function Home(props: {
   const [inputText, setInputText] = useState("");
   const [content, setContent] = useState("");
   const [themes, setThemes] = useState([]);
-  const newThemes = [...themes, inputText];
+  const newThemes = [...themes];
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getPosts = useCallback(async () => {
-    let postRef = await db.collection("memo")
-    .orderBy('theme')
-    .limit(20)
-    const querySnapshot = await postRef.get()
-    return querySnapshot.docs
-    // setPosts()
+    // let postRef = await db.collection("memo")
+    // .orderBy('theme')
+    // .limit(20)
+    // const querySnapshot = await postRef.get()
+    // return querySnapshot.docs
+    // // setPosts()
+    // setLoading(false);
+    const postsRef = db.collection("memo");
+    const querySnapshot = await postsRef.get();
+    setPosts(querySnapshot.docs);
+
     setLoading(false);
-  }, []);
+  }, [db]);
+
 
   useEffect(() => {
     getPosts();
@@ -97,8 +103,8 @@ export default function Home(props: {
     console.log("Saved");
     try {
       await db.collection("memo").add({
-        // id: post.id,
-        theme: theme,
+        // themes one of theme
+        theme: newThemes,
         content: content,
       });
     } catch (error) {
@@ -160,7 +166,7 @@ export default function Home(props: {
           themes={themes}
           onClickDelete={onClickDelete}
           handleContentChange={handleContentChange}
-          onClick={onClickSave}
+          onClickSave={onClickSave}
           content={content}
         />
       {/* </InfiniteScroll> */}
