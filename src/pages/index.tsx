@@ -14,9 +14,7 @@ import "firebase/storage";
 import { db, firebaseConfig } from "../../Config";
 import Header from "../components/Header";
 import InputForms from "../components/InputForm";
-import ListItem from "../components/ListItem";
 import MemosTheme from "../components/MemosTheme";
-import InfiniteScroll from "react-infinite-scroller";
 // import { useMemo } from "react";
 
 firebaseConfig;
@@ -28,34 +26,29 @@ export default function Home(props: {
   const { onClickSearch, onClickBoolean } = props;
   const [inputText, setInputText] = useState("");
   const [content, setContent] = useState("");
+  const [contents, setContents] = useState([]);
   const [themes, setThemes] = useState([]);
   const newThemes = [...themes];
+  const newContents = [...contents];
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getPosts = useCallback(async () => {
-    // let postRef = await db.collection("memo")
-    // .orderBy('theme')
-    // .limit(20)
-    // const querySnapshot = await postRef.get()
-    // return querySnapshot.docs
-    // // setPosts()
-    // setLoading(false);
+    //firebaseからデータを取得する
     const postsRef = db.collection("memo");
     const querySnapshot = await postsRef.get();
-    setPosts(querySnapshot.docs);
-
+    const posts = querySnapshot.docs.map((doc) => doc.data());
+    setPosts(posts);
     setLoading(false);
-  }, [db]);
-
+    console.log(posts); 
+  }, []);
 
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
   const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
-    useCallback(
-      (e) => setInputText(e.target.value), [setInputText]);
+    useCallback((e) => setInputText(e.target.value), [setInputText]);
 
   const handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"] =
     useCallback(
@@ -99,8 +92,7 @@ export default function Home(props: {
     }
   };
 
-  const onClickSave = async (theme , post) => {
-    console.log("Saved");
+  const onClickSave = async () => {
     try {
       await db.collection("memo").add({
         // themes one of theme
@@ -110,7 +102,6 @@ export default function Home(props: {
     } catch (error) {
       console.error("Error adding docment", error);
     }
-    console.log(theme);
   };
 
   const onClickDelete = async (index: number) => {
@@ -129,47 +120,33 @@ export default function Home(props: {
     setThemes(newThemes);
   };
 
-  // const loadMore = (index) => {
-  //   if (themes.length > 5) {
-  //     setThemes([...themes, index]);
-  //   }
-  // };
-  // const loader = () => {
-  //   loadMore.length > 5 && (
-  //     <div className="loader" key={0}>
-  //       Loading ...
-  //     </div>
-  //   );
-  // };
-
   return (
     <div>
       <Head>
         <title>MemoApp</title>
       </Head>
-      {/* <InfiniteScroll 
-      // loadMore={loadMore} 
-      hasMore={true} 
-      // loader={loader}
-      > */}
-        <Header />
-        <InputForms
-          inputText={inputText}
-          onChange={onChangeInputText}
-          onClickAdd={onClickAdd}
-          pushEnter={(e) => keyDown(e)}
-          value={inputText}
-          onClickSeach={onClickSearch}
-          onClickBoolean={onClickBoolean}
-        />
-        <MemosTheme
-          themes={themes}
-          onClickDelete={onClickDelete}
-          handleContentChange={handleContentChange}
-          onClickSave={onClickSave}
-          content={content}
-        />
-      {/* </InfiniteScroll> */}
+      <Header />
+      <InputForms
+        inputText={inputText}
+        onChange={onChangeInputText}
+        onClickAdd={onClickAdd}
+        pushEnter={(e) => keyDown(e)}
+        value={inputText}
+        onClickSeach={onClickSearch}
+        onClickBoolean={onClickBoolean}
+      />
+      {posts.map((post) => {
+        return (
+          <MemosTheme
+            key={post.theme}
+            themes={themes}
+            onClickDelete={onClickDelete}
+            handleContentChange={handleContentChange}
+            onClickSave={onClickSave}
+            content={content}
+          />
+        );
+      })}
     </div>
   );
 }
