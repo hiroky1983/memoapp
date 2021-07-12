@@ -1,15 +1,17 @@
-import React from "react";
-import ListItem from "../components/ListItem";
+import React, { TextareaHTMLAttributes, VFC } from "react";
+import { ListItem } from "../components/ListItem";
 
 import "tailwindcss/tailwind.css";
 
 type Props = {
-  themes: string;
-  onClickDelete: () => void;
-  onClickSave:() => void;
-}
+  themes: string[];
+  onClickDelete: (index: number) => Promise<void>;
+  onClickSave: () => Promise<void>;
+  content: string;
+  handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
+};
 
-export default function MemosTheme(props): JSX.Element {
+export const MemosTheme: VFC<Props> = (props) => {
   const { themes, onClickDelete, onClickSave, content, handleContentChange } =
     props;
 
@@ -32,4 +34,4 @@ export default function MemosTheme(props): JSX.Element {
       </ul>
     </div>
   );
-}
+};

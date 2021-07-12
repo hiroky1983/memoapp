@@ -1,10 +1,10 @@
 import { title } from "process";
 import React, {
-  DOMAttributes,
   Fragment,
   TextareaHTMLAttributes,
   useRef,
   useState,
+  VFC,
 } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import TextareaAutosize from "react-textarea-autosize";
@@ -13,7 +13,17 @@ import "tailwindcss/tailwind.css";
 import DeleteButton from "./button/DeleteButton";
 import SaveButton from "./button/SaveButton";
 
-export default function ListItem(props): JSX.Element {
+type Props = {
+  themes?: string[];
+  theme?: string;
+  index?: number;
+  onClickDelete:  (index: number) => Promise<void>;
+  onClickSave:() => Promise<void>;
+  content: string;
+  handleContentChange:TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"]
+}
+
+export const ListItem: VFC<Props> = (props) => {
   const {
     onClickDelete,
     onClickSave,
