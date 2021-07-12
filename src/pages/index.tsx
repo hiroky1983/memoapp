@@ -12,26 +12,24 @@ import "firebase/firestore";
 import "firebase/storage";
 
 import { db, firebaseConfig } from "../../Config";
-import Header from "../components/Header";
-import InputForms from "../components/InputForm";
-import MemosTheme from "../components/MemosTheme";
+import { Header } from "../components/Header";
+import {InputForms} from "../components/InputForm";
+import { MemosTheme } from "../components/MemosTheme";
 // import { useMemo } from "react";
 
 firebaseConfig;
 
-export default function Home(props: {
-  onClickSearch: React.MouseEvent<HTMLElement>;
-  onClickBoolean: boolean;
-}): JSX.Element {
-  const { onClickSearch, onClickBoolean } = props;
-  const [inputText, setInputText] = useState("");
-  const [content, setContent] = useState("");
+export default function Home():JSX.Element {
+  const [inputText, setInputText] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [contents, setContents] = useState([]);
   const [themes, setThemes] = useState([]);
   const newThemes = [...themes];
   const newContents = [...contents];
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [onClickBool, setOnClickBool] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   const getPosts = useCallback(async () => {
     //firebaseからデータを取得する
@@ -40,7 +38,7 @@ export default function Home(props: {
     const posts = querySnapshot.docs.map((doc) => doc.data());
     setPosts(posts);
     setLoading(false);
-    console.log(posts); 
+    console.log(posts);
   }, []);
 
   useEffect(() => {
@@ -57,6 +55,10 @@ export default function Home(props: {
       },
       [setContent]
     );
+    const onClickSearch = (e) => {
+      setKeyword(e.target.value);
+      setOnClickBool(!onClickBool);
+    };
 
   const onClickAdd = () => {
     if (inputText === "") return;
@@ -131,9 +133,9 @@ export default function Home(props: {
         onChange={onChangeInputText}
         onClickAdd={onClickAdd}
         pushEnter={(e) => keyDown(e)}
-        value={inputText}
-        onClickSeach={onClickSearch}
-        onClickBoolean={onClickBoolean}
+        // value={inputText}
+        onClickSearch={onClickSearch}
+        onClickBool={onClickBool}
       />
       {posts.map((post) => {
         return (
