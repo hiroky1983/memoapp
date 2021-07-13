@@ -1,9 +1,13 @@
-import React from "react";
-
-import { AiFillSave } from "react-icons/ai";
+import React, { VFC } from "react";
 import "tailwindcss/tailwind.css";
 
-export default function SaveButton(props): JSX.Element {
+import { AiFillSave } from "react-icons/ai";
+
+type Props = {
+  onClick:() => void;
+}
+
+export const SaveButton: VFC<Props> = (props) => {
   const { onClick } = props;
   return (
     <div className="items-center ">

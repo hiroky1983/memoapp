@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, VFC } from "react";
 import "tailwindcss/tailwind.css";
-import CreateButton from "./button/CreateButton";
-import SearchButton from "./button/SearchButton";
+import { CreateButton } from "./button/CreateButton";
+import { SearchButton } from "./button/SearchButton";
 
 type Props = {
   inputText: string;
@@ -11,11 +11,18 @@ type Props = {
   title?: string;
   onClickBool: boolean;
   onClickSearch: (e: any) => void;
-}
+};
 
 export const InputForms: VFC<Props> = (props) => {
-  const { inputText, onChangeInputText, onClickAdd, pushEnter, title ,onClickBool,onClickSearch} = props;
-
+  const {
+    inputText,
+    onChangeInputText,
+    onClickAdd,
+    pushEnter,
+    title,
+    onClickBool,
+    onClickSearch,
+  } = props;
 
   return (
     <div className="p-6 m-1 max-w-screen-xl	">
@@ -46,10 +53,10 @@ export const InputForms: VFC<Props> = (props) => {
           <SearchButton
             onClickSearch={onClickSearch}
             title={title}
-            onClickBoolean={onClickBool}
+            onClickBool={onClickBool}
           />
         </div>
       </div>
     </div>
   );
-}
+};

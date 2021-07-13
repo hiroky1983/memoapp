@@ -10,18 +10,18 @@ import { Dialog, Transition } from "@headlessui/react";
 import TextareaAutosize from "react-textarea-autosize";
 
 import "tailwindcss/tailwind.css";
-import DeleteButton from "./button/DeleteButton";
-import SaveButton from "./button/SaveButton";
+import { DeleteButton } from "./button/DeleteButton";
+import { SaveButton } from "./button/SaveButton";
 
 type Props = {
   themes?: string[];
   theme?: string;
   index?: number;
-  onClickDelete:  (index: number) => Promise<void>;
-  onClickSave:() => Promise<void>;
+  onClickDelete: (index: number) => Promise<void>;
+  onClickSave: () => Promise<void>;
   content: string;
-  handleContentChange:TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"]
-}
+  handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
+};
 
 export const ListItem: VFC<Props> = (props) => {
   const {
@@ -136,4 +136,4 @@ export const ListItem: VFC<Props> = (props) => {
       </li>
     </div>
   );
-}
+};

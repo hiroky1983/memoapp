@@ -1,9 +1,14 @@
-import React from "react";
-
+import React, { VFC } from "react";
 import "tailwindcss/tailwind.css";
+
 import { AiFillEdit } from "react-icons/ai";
 
-export default function CreateButton(props): JSX.Element  {
+type Props = {
+  onClick:() => void;
+}
+
+
+export const CreateButton: VFC<Props> =(props) =>  {
   const { onClick } = props;
   return (
     <div className="items-center">

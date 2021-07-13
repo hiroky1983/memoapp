@@ -1,8 +1,13 @@
-import React from "react";
+import React, { VFC } from "react";
 import "tailwindcss/tailwind.css";
+
 import { AiOutlineSearch } from "react-icons/ai";
 
-export default function SearchButton(props): JSX.Element {
+type Props = {
+  onClick:() => void;
+}
+
+export const SearchButton: VFC<Props> = (props) => {
   const { onClick } = props;
   return (
     <div className="items-center">
