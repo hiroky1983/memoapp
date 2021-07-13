@@ -130,7 +130,7 @@ export default function Home():JSX.Element {
       <Header />
       <InputForms
         inputText={inputText}
-        onChange={onChangeInputText}
+        onChangeInputText={onChangeInputText}
         onClickAdd={onClickAdd}
         pushEnter={(e) => keyDown(e)}
         // value={inputText}

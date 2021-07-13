@@ -5,7 +5,7 @@ import SearchButton from "./button/SearchButton";
 
 type Props = {
   inputText: string;
-  onChange: InputHTMLAttributes<HTMLInputElement>["onChange"];
+  onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"];
   onClickAdd: () => string;
   pushEnter: (e: any) => string;
   title?: string;
@@ -14,7 +14,7 @@ type Props = {
 }
 
 export const InputForms: VFC<Props> = (props) => {
-  const { inputText, onChange, onClickAdd, pushEnter, title ,onClickBool,onClickSearch} = props;
+  const { inputText, onChangeInputText, onClickAdd, pushEnter, title ,onClickBool,onClickSearch} = props;
 
 
   return (
@@ -27,7 +27,7 @@ export const InputForms: VFC<Props> = (props) => {
             type="text"
             placeholder="検索する言葉を入力"
             value={inputText}
-            onChange={onChange}
+            onChange={onChangeInputText}
             onKeyDown={pushEnter}
           />
         ) : (
@@ -37,7 +37,7 @@ export const InputForms: VFC<Props> = (props) => {
             type="text"
             placeholder="題名を入力"
             value={inputText}
-            onChange={onChange}
+            onChange={onChangeInputText}
             onKeyDown={pushEnter}
           />
         )}
