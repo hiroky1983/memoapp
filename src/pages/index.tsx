@@ -75,7 +75,6 @@ export default function Home(): JSX.Element {
 
   const keyDown = (e) => {
     if (e.keyCode === 13) {
-      // const newThemes = [...themes, inputText];
       if (themes.some((item) => item === inputText)) {
         alert("同じ題名があります");
         return inputText;
