@@ -11,13 +11,10 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 
-import { db, firebaseConfig } from "../../Config";
+import { db } from "../../Config";
 import { Header } from "../components/Header";
 import { InputForms } from "../components/InputForm";
 import { MemosTheme } from "../components/MemosTheme";
-// import { useMemo } from "react";
-
-firebaseConfig;
 
 export default function Home(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
@@ -97,7 +94,6 @@ export default function Home(): JSX.Element {
   const onClickSave = async () => {
     try {
       await db.collection("memo").add({
-        // themes one of theme
         theme: newThemes,
         content: content,
       });
@@ -133,7 +129,6 @@ export default function Home(): JSX.Element {
         onChangeInputText={onChangeInputText}
         onClickAdd={onClickAdd}
         pushEnter={(e) => keyDown(e)}
-        // value={inputText}
         onClickSearch={onClickSearch}
         onClickBool={onClickBool}
       />
