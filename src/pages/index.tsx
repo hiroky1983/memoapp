@@ -55,8 +55,8 @@ export default function Home():JSX.Element {
       },
       [setContent]
     );
-    const onClickSearch = (e) => {
-      setKeyword(e.target.value);
+    const onClickSearch = () => {
+      // setKeyword(e.target.value);
       setOnClickBool(!onClickBool);
     };
 
@@ -106,7 +106,7 @@ export default function Home():JSX.Element {
     }
   };
 
-  const onClickDelete = async (index: number) => {
+  const onClickDelete = async (index) => {
     const newThemes = [...themes];
     try {
       const querySnapshot = await db.collection("memo").get();

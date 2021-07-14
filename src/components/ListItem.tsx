@@ -17,10 +17,11 @@ type Props = {
   themes?: string[];
   theme?: string;
   index?: number;
-  onClickDelete: (index: number) => Promise<void>;
+  onClickDelete: (index) => Promise<void>;
   onClickSave: () => Promise<void>;
   content: string;
   handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
+  title?: string;
 };
 
 export const ListItem: VFC<Props> = (props) => {
@@ -28,7 +29,6 @@ export const ListItem: VFC<Props> = (props) => {
     onClickDelete,
     onClickSave,
     theme,
-    index,
     content,
     handleContentChange,
   } = props;
@@ -119,7 +119,7 @@ export const ListItem: VFC<Props> = (props) => {
                             onClick={closeModal}
                             ref={cancelButtonRef}
                           >
-                            <SaveButton onClick={onClickSave} />
+                            <SaveButton onClickSave={onClickSave} />
                           </div>
                         </div>
                       </div>
@@ -130,7 +130,7 @@ export const ListItem: VFC<Props> = (props) => {
             </div>
           </div>
           <div>
-            <DeleteButton onClick={() => onClickDelete(index)} title={title} />
+            <DeleteButton onClickDelete={onClickDelete} title={title} />
           </div>
         </div>
       </li>

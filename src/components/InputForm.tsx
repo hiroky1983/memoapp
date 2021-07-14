@@ -10,7 +10,8 @@ type Props = {
   pushEnter: (e: any) => string;
   title?: string;
   onClickBool: boolean;
-  onClickSearch: (e: any) => void;
+  onClickSearch: () => void;
+
 };
 
 export const InputForms: VFC<Props> = (props) => {
@@ -49,7 +50,7 @@ export const InputForms: VFC<Props> = (props) => {
           />
         )}
         <div className="p-4 flex">
-          <CreateButton onClick={onClickAdd} title={title} />
+          <CreateButton onClickAdd={onClickAdd} title={title} />
           <SearchButton
             onClickSearch={onClickSearch}
             title={title}
