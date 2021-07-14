@@ -13,13 +13,13 @@ import "firebase/storage";
 
 import { db, firebaseConfig } from "../../Config";
 import { Header } from "../components/Header";
-import {InputForms} from "../components/InputForm";
+import { InputForms } from "../components/InputForm";
 import { MemosTheme } from "../components/MemosTheme";
 // import { useMemo } from "react";
 
 firebaseConfig;
 
-export default function Home():JSX.Element {
+export default function Home(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [contents, setContents] = useState([]);
@@ -55,10 +55,10 @@ export default function Home():JSX.Element {
       },
       [setContent]
     );
-    const onClickSearch = () => {
-      // setKeyword(e.target.value);
-      setOnClickBool(!onClickBool);
-    };
+  const onClickSearch = () => {
+    // setKeyword(e.target.value);
+    setOnClickBool(!onClickBool);
+  };
 
   const onClickAdd = () => {
     if (inputText === "") return;

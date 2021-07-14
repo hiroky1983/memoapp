@@ -6,9 +6,9 @@ import { AiFillEdit } from "react-icons/ai";
 type Props = {
   onClickAdd: () => string;
   title?: string;
-}
+};
 
-export const CreateButton: VFC<Props> =(props) =>  {
+export const CreateButton: VFC<Props> = (props) => {
   const { onClickAdd } = props;
   return (
     <div className="items-center">
@@ -21,4 +21,4 @@ export const CreateButton: VFC<Props> =(props) =>  {
       </button>
     </div>
   );
-}
+};

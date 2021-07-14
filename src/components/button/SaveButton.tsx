@@ -6,7 +6,7 @@ import { AiFillSave } from "react-icons/ai";
 type Props = {
   onClickSave: () => Promise<void>;
   title?: string;
-}
+};
 
 export const SaveButton: VFC<Props> = (props) => {
   const { onClickSave } = props;
@@ -21,4 +21,4 @@ export const SaveButton: VFC<Props> = (props) => {
       </button>
     </div>
   );
-}
+};

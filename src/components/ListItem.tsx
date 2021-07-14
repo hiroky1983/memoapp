@@ -25,13 +25,8 @@ type Props = {
 };
 
 export const ListItem: VFC<Props> = (props) => {
-  const {
-    onClickDelete,
-    onClickSave,
-    theme,
-    content,
-    handleContentChange,
-  } = props;
+  const { onClickDelete, onClickSave, theme, content, handleContentChange } =
+    props;
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 

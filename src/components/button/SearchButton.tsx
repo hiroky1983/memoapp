@@ -4,10 +4,10 @@ import "tailwindcss/tailwind.css";
 import { AiOutlineSearch } from "react-icons/ai";
 
 type Props = {
-  onClickSearch:() => void;
+  onClickSearch: () => void;
   title?: string;
   onClickBool?: boolean;
-}
+};
 
 export const SearchButton: VFC<Props> = (props) => {
   const { onClickSearch } = props;
@@ -22,4 +22,4 @@ export const SearchButton: VFC<Props> = (props) => {
       </button>
     </div>
   );
-}
+};

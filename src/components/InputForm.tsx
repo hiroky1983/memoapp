@@ -11,7 +11,6 @@ type Props = {
   title?: string;
   onClickBool: boolean;
   onClickSearch: () => void;
-
 };
 
 export const InputForms: VFC<Props> = (props) => {

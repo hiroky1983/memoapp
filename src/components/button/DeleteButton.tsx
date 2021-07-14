@@ -6,9 +6,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 type Props = {
   onClickDelete: (index) => Promise<void>;
   title?: string;
-}
+};
 
-export const DeleteButton: VFC<Props> = (props) =>  {
+export const DeleteButton: VFC<Props> = (props) => {
   const { onClickDelete } = props;
   return (
     <div className="items-center">
@@ -21,4 +21,4 @@ export const DeleteButton: VFC<Props> = (props) =>  {
       </button>
     </div>
   );
-}
+};
