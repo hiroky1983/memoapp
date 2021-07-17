@@ -3,7 +3,6 @@ import React, {
   InputHTMLAttributes,
   useState,
   useCallback,
-  useEffect,
 } from "react";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
@@ -26,21 +25,7 @@ export default function Home(): JSX.Element {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [onClickBool, setOnClickBool] = useState(false);
-  const [keyword, setKeyword] = useState("");
-
-  const getPosts = useCallback(async () => {
-    //firebaseからデータを取得する
-    const postsRef = db.collection("memo");
-    const querySnapshot = await postsRef.get();
-    const posts = querySnapshot.docs.map((doc) => doc.data());
-    setPosts(posts);
-    setLoading(false);
-    console.log(posts);
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+  // const [keyword, setKeyword] = useState("");
 
   const onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"] =
     useCallback((e) => setInputText(e.target.value), [setInputText]);
@@ -131,18 +116,14 @@ export default function Home(): JSX.Element {
         onClickSearch={onClickSearch}
         onClickBool={onClickBool}
       />
-      {posts.map((post) => {
-        return (
           <MemosTheme
-            key={post.theme}
+            key={newThemes.length}
             themes={themes}
             onClickDelete={onClickDelete}
             handleContentChange={handleContentChange}
             onClickSave={onClickSave}
             content={content}
           />
-        );
-      })}
     </div>
   );
 }
