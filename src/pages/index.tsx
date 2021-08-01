@@ -3,6 +3,7 @@ import React, {
   InputHTMLAttributes,
   useState,
   useCallback,
+  useEffect,
 } from "react";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
@@ -18,11 +19,16 @@ import { MemosTheme } from "../components/MemosTheme";
 export default function Home(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [contents, setContents] = useState([]);
   const [themes, setThemes] = useState([]);
   const newThemes = [...themes];
-  const newContents = [...contents];
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([
+    {
+      id: "",
+      theme: "",
+      content: "",
+      timestamp: null,
+    },
+  ]);
   const [loading, setLoading] = useState<boolean>(false);
   const [onClickBool, setOnClickBool] = useState(false);
   // const [keyword, setKeyword] = useState("");
@@ -41,6 +47,22 @@ export default function Home(): JSX.Element {
     // setKeyword(e.target.value);
     setOnClickBool(!onClickBool);
   };
+
+  useEffect(() => {
+    const initialPosts = db.collection("memo").onSnapshot((snapshot) =>
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          theme: doc.data().theme,
+          content: doc.data().content,
+          timestamp: doc.data().timestamp,
+        }))
+      )
+    );
+    return () => {
+      initialPosts();
+    };
+  }, []);
 
   const onClickAdd = () => {
     if (inputText === "") return;
@@ -116,14 +138,20 @@ export default function Home(): JSX.Element {
         onClickSearch={onClickSearch}
         onClickBool={onClickBool}
       />
-          <MemosTheme
-            key={newThemes.length}
-            themes={themes}
-            onClickDelete={onClickDelete}
-            handleContentChange={handleContentChange}
-            onClickSave={onClickSave}
-            content={content}
-          />
+      {posts[0]?.id && (
+        <>
+          {posts.map((post) => (
+            <MemosTheme
+              key={post.id}
+              themes={themes}
+              onClickDelete={onClickDelete}
+              handleContentChange={handleContentChange}
+              onClickSave={onClickSave}
+              content={content}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 }
