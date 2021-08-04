@@ -1,5 +1,5 @@
 export type MemoType = [{
-  id: number;
+  id: string;
   theme: string;
   content: string;
 }];
