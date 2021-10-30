@@ -12,7 +12,7 @@ export const Header: VFC = () => {
           src="https://it-kingdom.com/_next/image?url=%2Fimg%2Flogo.png&w=220&q=75"
           className="p-5 cursor-pointer flex"
         />
-        <ToggleSwitch />
+        {/* <ToggleSwitch /> */}
       </div>
 
       <div className="border"></div>
