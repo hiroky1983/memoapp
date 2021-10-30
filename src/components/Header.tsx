@@ -1,6 +1,6 @@
 import React, { VFC } from "react";
 import "tailwindcss/tailwind.css";
-import { ToggleSwitch } from "./toggle/TogguleSwitch";
+// import { ToggleSwitch } from "./toggle/TogguleSwitch";
 
 export const Header: VFC = () => {
   return (
