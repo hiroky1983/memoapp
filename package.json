@@ -21,7 +21,7 @@
     "es6-shim": "^0.35.6",
     "eslint": "^7.29.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "firebase": "8.6.2",
+    "firebase": "^8.6.2",
     "install": "^0.13.0",
     "interweave": "^12.7.2",
     "interweave-autolink": "^4.4.2",
