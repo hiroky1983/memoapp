@@ -4,7 +4,7 @@ import "tailwindcss/tailwind.css";
 import { AiFillEdit } from "react-icons/ai";
 
 type Props = {
-  onClickAdd: () => string;
+  onClickAdd: () => Promise<string>;
   title?: string;
 };
 

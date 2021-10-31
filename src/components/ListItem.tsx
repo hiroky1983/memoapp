@@ -17,7 +17,7 @@ type Props = {
   themes?: string[];
   theme?: string;
   index?: number;
-  onClickDelete: (index) => Promise<void>;
+  onClickDelete: (index: number) => Promise<void>;
   onClickSave: () => Promise<void>;
   content: string;
   handleContentChange: TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
@@ -104,6 +104,7 @@ export const ListItem: VFC<Props> = (props) => {
                             value={content}
                             onChange={handleContentChange}
                             placeholder="メモを入力する"
+                            style={{ height: 300 }}
                           >
                             {content}
                           </TextareaAutosize>

@@ -6,8 +6,8 @@ import { SearchButton } from "./button/SearchButton";
 type Props = {
   inputText: string;
   onChangeInputText: InputHTMLAttributes<HTMLInputElement>["onChange"];
-  onClickAdd: () => string;
-  pushEnter: (e: any) => string;
+  onClickAdd: () => Promise<string>;
+  pushEnter: (e: { keyCode: number }) => Promise<string>;
   title?: string;
   onClickBool: boolean;
   onClickSearch: () => void;
@@ -48,7 +48,7 @@ export const InputForms: VFC<Props> = (props) => {
             onKeyDown={pushEnter}
           />
         )}
-        <div className="p-4 flex">
+        <div className="p-4 flex gap-3">
           <CreateButton onClickAdd={onClickAdd} title={title} />
           <SearchButton
             onClickSearch={onClickSearch}

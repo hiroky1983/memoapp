@@ -15,6 +15,7 @@ import { db } from "../../Config";
 import { Header } from "../components/Header";
 import { InputForms } from "../components/InputForm";
 import { MemosTheme } from "../components/MemosTheme";
+import { log } from "console";
 
 type memosProps = {
   id: string;
@@ -33,7 +34,7 @@ export default function Home(): JSX.Element {
       content: "",
     },
   ]);
-  console.log(memos);
+  // console.log(memos);
 
   const [onClickBool, setOnClickBool] = useState(false);
 
@@ -86,16 +87,16 @@ export default function Home(): JSX.Element {
 
   const keyDown = async (e: { keyCode: number }) => {
     if (e.keyCode === 13) {
-      if (themes.some((item) => item === inputText)) {
-        alert("同じ題名があります");
-        return inputText;
-      }
       if (inputText === "") {
         alert("題名を入力して下さい");
         return inputText;
       }
+      if (themes.some((item) => item === inputText)) {
+        alert("同じ題名があります");
+        return inputText;
+      }
       setThemes((prev) => {
-        return [...prev, inputText];
+        return [...prev, { theme: inputText }];
       });
       const docData = {
         theme: inputText,
@@ -108,28 +109,41 @@ export default function Home(): JSX.Element {
     }
   };
 
-  const onClickSave = async () => {
-    //MemosThemeに表示されてるthemeとthemesの中身が一致しているオブジェクトを取得
-    const a = Object.keys(themes).filter((item, i) => themes[item] === memos[i].theme);
-    console.log(a);
+  const onClickSave = async (i) => {
+    const memo = memos.map((theme, i) => memos[i].theme);
+    console.log(memo);
+    console.log(themes);
+    // const a = memo[2]
+    // const b = themes[2]
+    // console.log(a);
+    // console.log(b);
+
+    //MemosThemeに表示されてるthemeのvalueを検知して、そのvalueを持つmemoを検索する
+    const findMemo = memo.find((item) => item === themes[i]);
+    console.log(findMemo);
     
-    const findId = memos.find((memo, i) => memo.theme === themes[i]);
-    console.log(findId);
+
     return;
   };
 
   const onClickDelete = async (index: number) => {
     const newThemes = [...themes];
-    try {
-      const querySnapshot = await db.collection("memo").get();
-      querySnapshot.docs.map((postDoc) => postDoc.id);
-      querySnapshot.forEach((postDoc) => {
-        console.log(postDoc.id, " => ", JSON.stringify(postDoc.data()));
-      });
-      await db.app.delete();
-    } catch (error) {
-      console.error("Error deleting docment", error);
+    const memosId = memos.map((id) => id.id);
+    //memosコレクションのドキュメントデータを取得
+    const docData = await db.collection("memo").get();
+    //memosコレクションのドキュメントデータからidを取得
+    const docId = docData.docs.map((doc) => doc.id);
+    //docIdとmemosIdの中身が一致しているものをオブジェクトとして取得
+    const findId = docId.find((id) => memosId.includes(id));
+    console.log(findId);
+
+    const docRef = db.collection("memo").doc(docId);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      alert("データがありません");
+      return;
     }
+    await doc.ref.delete();
     newThemes.splice(index, 1);
     setThemes(newThemes);
   };
