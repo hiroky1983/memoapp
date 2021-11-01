@@ -14,8 +14,8 @@ import "firebase/storage";
 import { db } from "../../Config";
 import { Header } from "../components/Header";
 import { InputForms } from "../components/InputForm";
-import { MemosTheme } from "../components/MemosTheme";
-import { log } from "console";
+// import { MemosTheme } from "../components/MemosTheme";
+import { ListItem } from "../components/ListItem";
 
 type memosProps = {
   id: string;
@@ -34,7 +34,6 @@ export default function Home(): JSX.Element {
       content: "",
     },
   ]);
-  // console.log(memos);
 
   const [onClickBool, setOnClickBool] = useState(false);
 
@@ -96,7 +95,7 @@ export default function Home(): JSX.Element {
         return inputText;
       }
       setThemes((prev) => {
-        return [...prev, { theme: inputText }];
+        return [...prev, inputText];
       });
       const docData = {
         theme: inputText,
@@ -109,19 +108,17 @@ export default function Home(): JSX.Element {
     }
   };
 
-  const onClickSave = async (i) => {
-    const memo = memos.map((theme, i) => memos[i].theme);
-    console.log(memo);
-    console.log(themes);
-    // const a = memo[2]
-    // const b = themes[2]
-    // console.log(a);
-    // console.log(b);
+  console.log(memos);
+  console.log(themes);
 
-    //MemosThemeに表示されてるthemeのvalueを検知して、そのvalueを持つmemoを検索する
-    const findMemo = memo.find((item) => item === themes[i]);
-    console.log(findMemo);
-    
+  const onClickSave = async () => {
+    //themesに格納された値のインデックス番号とmemosのインデックス番号を紐付ける
+
+    const a = memos.find((memo, i) => memos[i].theme === themes[i]);
+    console.log(a);
+
+    const id = memos.find((item, i) => item.theme[i]);
+    console.log(id);
 
     return;
   };
@@ -137,7 +134,7 @@ export default function Home(): JSX.Element {
     const findId = docId.find((id) => memosId.includes(id));
     console.log(findId);
 
-    const docRef = db.collection("memo").doc(docId);
+    const docRef = db.collection("memo").doc();
     const doc = await docRef.get();
     if (!doc.exists) {
       alert("データがありません");
@@ -162,13 +159,23 @@ export default function Home(): JSX.Element {
         onClickSearch={onClickSearch}
         onClickBool={onClickBool}
       />
-      <MemosTheme
-        themes={themes}
-        onClickDelete={onClickDelete}
-        handleContentChange={handleContentChange}
-        onClickSave={onClickSave}
-        content={content}
-      />
+      <ul>
+        {memos.map(
+          (MemosProprs: { theme: string; id: string; content: string }) => {
+            return (
+              <ListItem
+                key={MemosProprs.id}
+                theme={MemosProprs.theme}
+                id={MemosProprs.id}
+                onClickDelete={onClickDelete}
+                onClickSave={onClickSave}
+                content={content}
+                handleContentChange={handleContentChange}
+              />
+            );
+          }
+        )}
+      </ul>
     </div>
   );
 }
