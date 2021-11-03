@@ -48,7 +48,7 @@ export const InputForms: VFC<Props> = (props) => {
             onKeyDown={pushEnter}
           />
         )}
-        <div className="p-4 flex gap-3">
+        <div className="p-4 flex gap-3 mr-6">
           <CreateButton onClickAdd={onClickAdd} title={title} />
           <SearchButton
             onClickSearch={onClickSearch}
