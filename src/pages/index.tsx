@@ -14,10 +14,9 @@ import "firebase/storage";
 import { db } from "../../Config";
 import { Header } from "../components/Header";
 import { InputForms } from "../components/InputForm";
-// import { MemosTheme } from "../components/MemosTheme";
 import { ListItem } from "../components/ListItem";
 
-type memosProps = {
+export type memosProps = {
   id: string;
   theme: string;
   content: string;
@@ -108,14 +107,26 @@ export default function Home(): JSX.Element {
     }
   };
 
-  console.log(memos);
   console.log(themes);
 
   const onClickSave = async () => {
     //themesに格納された値のインデックス番号とmemosのインデックス番号を紐付ける
-
     const a = memos.find((memo, i) => memos[i].theme === themes[i]);
     console.log(a);
+
+    const newThemes = themes.map((theme) => {
+      return {
+        theme: theme,
+        id: a.id,
+        content: a.content,
+      };
+    });
+    console.log(newThemes);
+
+    const memosData = newThemes.find((item, i) => {
+      item.theme === memos[i].theme;
+    });
+    console.log(memosData);
 
     const id = memos.find((item, i) => item.theme[i]);
     console.log(id);
@@ -170,6 +181,7 @@ export default function Home(): JSX.Element {
                 onClickDelete={onClickDelete}
                 onClickSave={onClickSave}
                 content={content}
+                defaultValue={MemosProprs.content}
                 handleContentChange={handleContentChange}
               />
             );
